@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&amp;family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&amp;family=Rubik:wght@500;600;700;800&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { margin: 0; background: #FFFFFF; color: #1B1B1A; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  ::selection { background: #1B1B1A; color: #FFFFFF; }
+  @keyframes menuItemIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+  @keyframes logoPop { 0% { opacity: 0; transform: scale(.4); } 70% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes panelDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+  @keyframes panelUp { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+  @keyframes pageSweep { 0% { transform: translateY(100%); } 44% { transform: translateY(0); } 56% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
+  @keyframes scrollReveal { from { opacity: 0; transform: translateY(120px) scale(.88); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  [data-sr] { animation: scrollReveal linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  @supports not (animation-timeline: view()) { [data-sr] { animation: none; opacity: 1; transform: none; } }
+  @keyframes caret { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+  .hcards { scrollbar-width: none; -ms-overflow-style: none; }
+  .hcards::-webkit-scrollbar { height: 0; display: none; }
+  .hscroll { scrollbar-width: none; -ms-overflow-style: none; }
+  .hscroll::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  [data-resume-sheet] { outline: none; }
+  [data-resume-sheet]:focus { box-shadow: 0 0 0 2px rgba(234,179,8,0.4); border-radius: 4px; }
+  [data-resume-sheet] *::selection { background: #EAB308; color: #FFFFFF; }
+  .navdrop .navmenu { opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity .2s ease, visibility .2s ease, transform .2s ease; }
+  .navdrop:hover .navmenu { opacity: 1; visibility: visible; transform: translateY(0); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#FFFFFF;color:#1B1B1A;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;">
+    <div style="max-width:1320px;margin:0 auto;padding:0 clamp(24px,6vw,80px);height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <button onClick="{{ navWork }}" style="background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;"><img src="assets/tao-logo-dark-v2.png" alt="Olivia Tao" style="height:40px;width:auto;display:block;"></button>
+      <nav style="display:flex;align-items:center;gap:clamp(22px,3vw,44px);">
+        <button onClick="{{ navWorks }}" style="{{ workLinkStyle }}" style-hover="color:#1B1B1A;">Works</button>
+        <button onClick="{{ navAbout }}" style="{{ aboutLinkStyle }}" style-hover="color:#1B1B1A;">About</button>
+        <span class="navdrop" style="position:relative;display:inline-flex;align-items:center;">
+          <button onClick="{{ navArt }}" style="{{ artLinkStyle }}" style-hover="color:#1B1B1A;">Artwork</button>
+          <div class="navmenu" style="position:absolute;top:100%;left:50%;margin-left:-72px;padding-top:16px;z-index:60;">
+            <div style="background:#FFFFFF;border:1px solid #EDEDEA;box-shadow:0 14px 34px rgba(0,0,0,0.07);padding:7px 0;min-width:144px;display:flex;flex-direction:column;">
+              <button onClick="{{ navArt }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;padding:10px 20px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E6A63;transition:background .2s ease,color .2s ease;" style-hover="background:#F5F2EC;color:#1B1B1A;">Artwork</button>
+              <button onClick="{{ navSketch }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;padding:10px 20px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E6A63;transition:background .2s ease,color .2s ease;" style-hover="background:#F5F2EC;color:#1B1B1A;">Sketches</button>
+              <button onClick="{{ navSculpt }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;padding:10px 20px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E6A63;transition:background .2s ease,color .2s ease;" style-hover="background:#F5F2EC;color:#1B1B1A;">3D Sculptures</button>
+            </div>
+          </div>
+        </span>
+        <button onClick="{{ navResume }}" style="{{ resumeLinkStyle }}" style-hover="color:#1B1B1A;">Resume</button>
+        <button onClick="{{ navContact }}" style="{{ contactLinkStyle }}" style-hover="color:#1B1B1A;">Contact</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================ WORK / HOME ============================ -->
+  <sc-if value="{{ isWork }}" hint-placeholder-val="{{ true }}">
+  <main>
+    
+
+    <section style="background:#FFFFFF;padding:clamp(96px,20vh,240px) 0 clamp(40px,7vh,96px);">
+      <div style="max-width:1240px;margin:0 auto;width:100%;padding:0 clamp(24px,6vw,80px);">
+        <h1 style="margin:0;max-width:15ch;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(30px,4.6vw,62px);line-height:1.18;letter-spacing:-0.005em;color:#1B1B1A;">Industrial designer for health, beauty &amp; wellness.</h1>
+        <p style="margin:clamp(30px,4vw,48px) 0 0;font-size:clamp(16px,1.7vw,22px);letter-spacing:0.02em;color:#9A9892;">Designing for <em style="font-style:normal;color:#1B1B1A;white-space:nowrap;">{{ typed }}</em><span style="display:inline-block;width:2px;height:0.92em;margin-left:3px;background:#1B1B1A;vertical-align:-0.08em;animation:caret 1s steps(1,end) infinite;"></span></p>
+      </div>
+    </section><section style="max-width:1320px;margin:0 auto;padding:clamp(70px,10vw,150px) clamp(24px,6vw,80px) 0;">
+      <div data-sr="" style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin:0 0 clamp(40px,5vw,72px);">
+        <h2 style="margin:0;font-size:11px;letter-spacing:0.42em;text-transform:uppercase;font-weight:500;color:#9A9892;">Selected Work</h2>
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B8B2A6;">2024 — 2026</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));border-top:1px solid transparent;border-left:1px solid transparent;">
+        <sc-for list="{{ visibleProjects }}" as="p" hint-placeholder-count="2">
+          <button data-sr="" onClick="{{ p.onOpen }}" style="{{ p.cardStyle }}">
+            <sc-if value="{{ p.isVideo }}" hint-placeholder-val="{{ true }}">
+              <figure onMouseEnter="{{ p.onEnter }}" onMouseLeave="{{ p.onLeave }}" style="{{ p.figStyleMedia }}">
+                <span style="position:absolute;top:18px;left:20px;z-index:2;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.1em;color:#6E6E6E;">{{ p.num }}</span>
+                <div style="{{ p.stillStyle }}"></div>
+                <video src="{{ p.video }}" muted="" loop="" playsinline="" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;"></video>
+              </figure>
+            </sc-if>
+            <sc-if value="{{ p.notReal }}" hint-placeholder-val="{{ true }}">
+              <figure style="{{ p.figStylePh }}">
+                <span style="position:absolute;top:18px;left:20px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.1em;color:#B8B2A6;">{{ p.num }}</span>
+                <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.04em;color:#C4BFB3;">[ {{ p.ph }} ]</span>
+              </figure>
+            </sc-if>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:clamp(18px,1.6vw,22px) clamp(18px,1.6vw,22px) clamp(22px,2vw,28px);">
+              <div>
+                <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1B1B1A;">{{ p.title }}</h3>
+                <p style="margin:5px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ p.type }}</p>
+              </div>
+              <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;">{{ p.year }}</span>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ showAllBtn }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:center;margin-top:clamp(40px,5vw,64px);">
+          <button onClick="{{ navWorks }}" style="background:none;border:1px solid #C9C4BA;cursor:pointer;font-family:inherit;font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;color:#6E6E6E;padding:9px 20px;transition:background .25s ease,color .25s ease,border-color .25s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">View all works</button>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ============================ DESIGN WORKS ============================ -->
+  <sc-if value="{{ isWorks }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1320px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(24px,6vw,80px) clamp(80px,11vw,150px);color:#6E6A63;">
+    <div style="max-width:780px;margin:0 0 clamp(48px,7vw,88px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Industrial Design</p>
+      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Design Works</h1>
+      <p style="margin:clamp(24px,3vw,36px) 0 0;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Selected industrial design projects — carried from research and ideation through modeling to resolved, manufacturable form.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));border-top:1px solid transparent;border-left:1px solid transparent;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+        <button data-sr="" onClick="{{ p.onOpen }}" style="{{ p.cardStyle }}">
+          <sc-if value="{{ p.isVideo }}" hint-placeholder-val="{{ true }}">
+            <figure onMouseEnter="{{ p.onEnter }}" onMouseLeave="{{ p.onLeave }}" style="{{ p.figStyleMedia }}">
+              <span style="position:absolute;top:18px;left:20px;z-index:2;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.1em;color:#6E6E6E;">{{ p.num }}</span>
+              <div style="{{ p.stillStyle }}"></div>
+              <video src="{{ p.video }}" muted="" loop="" playsinline="" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;"></video>
+            </figure>
+          </sc-if>
+          <sc-if value="{{ p.notReal }}" hint-placeholder-val="{{ true }}">
+            <figure style="{{ p.figStylePh }}">
+              <span style="position:absolute;top:18px;left:20px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.1em;color:#B8B2A6;">{{ p.num }}</span>
+              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.04em;color:#C4BFB3;">[ {{ p.ph }} ]</span>
+            </figure>
+          </sc-if>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:clamp(18px,1.6vw,22px) clamp(18px,1.6vw,22px) clamp(22px,2vw,28px);">
+            <div>
+              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1B1B1A;">{{ p.title }}</h3>
+              <p style="margin:5px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ p.type }}</p>
+            </div>
+            <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;">{{ p.year }}</span>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============================ PROJECT DETAIL ============================ -->
+  <sc-if value="{{ isAndon }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:880px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#6E6A63;">
+    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9A9892;padding:0;margin-bottom:clamp(36px,5vw,60px);" style-hover="color:#1B1B1A;">← Back</button>
+
+    <h1 style="margin: 0; font-size: clamp(22px,3vw,34px); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; animation: menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards; animation-delay: .06s; color: #504d48">Andon</h1>
+    <p style="margin:14px 0 0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9A9892;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.13s;">Elderly Wellness — 2025</p>
+
+    <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
+      <p style="margin:0;font-family:'Newsreader',Georgia,serif;font-size:clamp(16px,1.4vw,20px);line-height:1.62;color:#7C7872;text-wrap:pretty;">Andon is a bedside wellness lamp for older adults — bringing warm, dimmable light together with gentle scent and sound in one quiet object.</p>
+      <p style="margin:0;font-family:'Newsreader',Georgia,serif;font-size:clamp(16px,1.4vw,20px);line-height:1.62;color:#7C7872;text-wrap:pretty;">These pages trace the project from a sleep-habits interview with my grandparents, through ideation and modeling, to a final lit render. The film below shows the finished work.</p>
+    </div>
+
+    <!-- RESEARCH -->
+    <section style="margin:clamp(4px,1.5vw,16px) 0 clamp(56px,7vw,88px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.3s;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(26px,3.5vw,40px);">
+        <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9A9892;">Research</span>
+        <span style="flex:1;height:1px;background:#E6E1D6;"></span>
+      </div>
+      <p style="margin:0 0 clamp(36px,5vw,56px);font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#8A867E;max-width:58ch;text-wrap:pretty;">Andon began with a sleep-habits interview with my grandparents. Their answers surfaced four recurring pain points — each one shaped a part of the final design.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,3.5vw,44px);margin-bottom:clamp(44px,6vw,72px);">
+
+        <div style="border-top:1px solid #E6E1D6;padding-top:clamp(16px,1.8vw,22px);">
+          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#C2B696;">01</span>
+          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">Sleep & Wellbeing</h3>
+          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#7C7872;text-wrap:pretty;">Poor sleep left them groggy, unfocused, and reaching for pills — sometimes awake until 2am, with headaches the next day.</p>
+          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#A39E94;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#C2B696;font-weight:600;">Response&nbsp;·&nbsp;</span>A calm bedtime ritual of light, scent, and sound to wind down without medication.</p>
+        </div>
+
+        <div style="border-top:1px solid #E6E1D6;padding-top:clamp(16px,1.8vw,22px);">
+          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#C2B696;">02</span>
+          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">Light</h3>
+          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#7C7872;text-wrap:pretty;">They find total dark unsettling, yet bedside lamps are "too bright — distracting and hard to sleep." They wanted something softer and smaller, set away from the bed.</p>
+          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#A39E94;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#C2B696;font-weight:600;">Response&nbsp;·&nbsp;</span>A low, dimmable ambient glow — warm or cool to settle a gentle grandpa-vs-grandma disagreement.</p>
+        </div>
+
+        <div style="border-top:1px solid #E6E1D6;padding-top:clamp(16px,1.8vw,22px);">
+          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#C2B696;">03</span>
+          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">Scent & Sound</h3>
+          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#7C7872;text-wrap:pretty;">Soft music helps them drift off, and they reach for essential oils and gentle scents to relax before sleep.</p>
+          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#A39E94;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#C2B696;font-weight:600;">Response&nbsp;·&nbsp;</span>A built-in speaker and a scent drawer that lifts to release fragrance.</p>
+        </div>
+
+        <div style="border-top:1px solid #E6E1D6;padding-top:clamp(16px,1.8vw,22px);">
+          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#C2B696;">04</span>
+          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">Effortless Control</h3>
+          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#7C7872;text-wrap:pretty;">They "hate buttons" and wanted lighting to be automatic — on when someone enters the room, off when they leave, with lights down around midnight.</p>
+          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#A39E94;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#C2B696;font-weight:600;">Response&nbsp;·&nbsp;</span>A door sensor that registers entry, so the lamp responds on its own.</p>
+        </div>
+
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(16px,2.4vw,30px);align-items:start;">
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;border:1px solid #ECE7DC;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
+            <img src="assets/andon-research-1.png" alt="Interview notes, page 1" style="display:block;width:100%;height:auto;">
+          </div>
+        </figure>
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;border:1px solid #ECE7DC;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
+            <img src="assets/andon-research-2.png" alt="Interview notes, page 2" style="display:block;width:100%;height:auto;">
+          </div>
+        </figure>
+      </div>
+      <p style="margin:13px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">From the interview notes</p>
+    </section>
+
+    <!-- IDEATION -->
+    <section style="margin:clamp(4px,1.5vw,16px) 0 clamp(56px,7vw,88px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.34s;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(36px,5vw,60px);">
+        <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9A9892;">Ideation</span>
+        <span style="flex:1;height:1px;background:#E6E1D6;"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(50px,7vw,90px);">
+
+        <div>
+          <div style="display:flex;align-items:baseline;gap:clamp(14px,1.7vw,22px);margin-bottom:clamp(22px,2.6vw,32px);">
+            <span style="flex:0 0 auto;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(18px,1.8vw,24px);line-height:1;color:#C2B696;">01</span>
+            <div>
+              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#4A463F;">Context</h3>
+              <p style="margin:9px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#8A867E;max-width:56ch;text-wrap:pretty;">Where the lamp lives — set at the foot of the bed, with a bedside control to switch it off and a door sensor that registers when the room has been entered.</p>
+            </div>
+          </div>
+          <figure style="margin:0;">
+            <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
+              <img src="assets/andon-poster-context.png" alt="Bedroom context study" style="display:block;margin:0 auto;width:100%;height:auto;">
+            </div>
+          </figure>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:baseline;gap:clamp(14px,1.7vw,22px);margin-bottom:clamp(22px,2.6vw,32px);">
+            <span style="flex:0 0 auto;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(18px,1.8vw,24px);line-height:1;color:#C2B696;">02</span>
+            <div>
+              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#4A463F;">Form Development</h3>
+              <p style="margin:9px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#8A867E;max-width:56ch;text-wrap:pretty;">From two opening silhouettes — a faceted octagonal lantern and a stacked volume — through desk and floor refinements and a fabric variation, to the resolved tiered form and the drawer that lifts to release scent.</p>
+            </div>
+          </div>
+          <figure style="margin:0;">
+            <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
+              <img src="assets/andon-poster-forms.png" alt="Form development — six studies" style="display:block;margin:0 auto;width:100%;height:auto;">
+            </div>
+          </figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MODELING -->
+    <section style="margin:0 0 clamp(56px,7vw,88px);">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(26px,3.5vw,40px);">
+        <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9A9892;">Modeling</span>
+        <span style="flex:1;height:1px;background:#E6E1D6;"></span>
+      </div>
+      <p style="margin:0 0 clamp(30px,4vw,48px);font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#8A867E;max-width:56ch;text-wrap:pretty;">The lantern was built in Rhino, then taken into Blender for lighting, rendering, and animation.</p>
+
+      <figure style="margin:0 0 clamp(20px,2.6vw,30px);">
+        <div onClick="{{ onPlateClick }}" style="background:#1C1B1A;padding:clamp(16px,2.4vw,30px);display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
+          <img src="assets/andon-model-final.png" alt="Final Rhino model" style="display:block;max-width:100%;height:auto;">
+        </div>
+        <figcaption style="margin-top:13px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">Final model · Rhino</figcaption>
+      </figure>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(16px,2.4vw,30px);align-items:end;">
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#1C1B1A;padding:clamp(16px,2.4vw,30px);display:flex;justify-content:center;align-items:center;cursor:zoom-in;transition:opacity .25s ease;min-height:100%;box-sizing:border-box;" style-hover="opacity:0.9;">
+            <img src="assets/andon-model-concept.png" alt="Early Rhino concept" style="display:block;max-width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:13px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">Early concept · Rhino</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#1C1B1A;padding:clamp(16px,2.4vw,30px);display:flex;justify-content:center;align-items:center;cursor:zoom-in;transition:opacity .25s ease;min-height:100%;box-sizing:border-box;" style-hover="opacity:0.9;">
+            <img src="assets/andon-model-blender.jpg" alt="Lighting and render setup in Blender" style="display:block;max-width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:13px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">Lighting &amp; render · Blender</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- VIDEO + RENDERS -->
+    <div style="display:flex;align-items:center;gap:16px;margin:0 0 clamp(28px,3.5vw,40px);">
+      <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9A9892;">Final Renders &amp; Film</span>
+      <span style="flex:1;height:1px;background:#E6E1D6;"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(16px,2.2vw,26px);align-items:start;">
+      <figure style="margin:0;">
+        <div style="background:#0E0C0A;overflow:hidden;">
+          <video ref="{{ videoRef }}" src="assets/summer-project.mp4" controls="" loop="" playsinline="" preload="metadata" style="display:block;width:100%;height:auto;"></video>
+        </div>
+        <figcaption style="margin-top:11px;font-size:12px;color:#9A9892;">Andon — full film.</figcaption>
+      </figure>
+      <div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vw,26px);">
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#0E0C0A;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.88;">
+            <img src="assets/andon-render-1.jpg" alt="Andon final render — lit, warm interior" style="display:block;width:100%;height:auto;">
+          </div>
+        </figure>
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#0E0C0A;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.88;">
+            <img src="assets/andon-render-2.jpg" alt="Andon final render — studio neutral" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:11px;font-size:12px;color:#9A9892;">Final renders — click to enlarge.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isOtherProject }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width:880px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#6E6A63;">
+    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9A9892;padding:0;margin-bottom:clamp(36px,5vw,60px);" style-hover="color:#1B1B1A;">← Back</button>
+
+    <h1 style="margin:0;font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.06s;">{{ cp.title }}</h1>
+    <p style="margin:14px 0 0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9A9892;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.13s;">{{ cp.typeYear }}</p>
+
+    <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
+      <sc-for list="{{ cp.paras }}" as="t" hint-placeholder-count="2">
+        <p style="margin:0;font-family:'Newsreader',Georgia,serif;font-size:clamp(16px,1.4vw,20px);line-height:1.62;color:#7C7872;text-wrap:pretty;">{{ t }}</p>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:clamp(20px,3vw,36px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.28s;">
+      <sc-for list="{{ cpGallery }}" as="g" hint-placeholder-count="3">
+        <figure style="margin:0;">
+          <sc-if value="{{ g.isVideo }}" hint-placeholder-val="{{ true }}">
+            <div style="border:1px solid transparent;background:#0E0C0A;overflow:hidden;">
+              <video ref="{{ videoRef }}" src="{{ g.src }}" controls="" loop="" playsinline="" preload="metadata" style="display:block;width:100%;height:auto;"></video>
+            </div>
+          </sc-if>
+          <sc-if value="{{ g.isPh }}" hint-placeholder-val="{{ true }}">
+            <div style="aspect-ratio:16/10;border:1px solid transparent;background:#EEE8DB;display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:#ADA9A2;">[ {{ g.label }} ]</span>
+            </div>
+          </sc-if>
+          <figcaption style="margin-top:11px;font-size:12px;color:#9A9892;">{{ g.caption }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============================ ABOUT ============================ -->
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ true }}">
+  <main style="height:calc(100vh - 84px);overflow:hidden;background:#FFFFFF;color:#6E6A63;">
+    <div class="hscroll" ref="{{ aboutScrollRef }}" style="display:flex;height:100%;overflow-x:auto;overflow-y:hidden;align-items:stretch;">
+
+      <section style="flex:0 0 auto;height:100%;box-sizing:border-box;display:flex;align-items:center;gap:clamp(32px,4vw,64px);padding:0 clamp(48px,6vw,104px);border-right:1px solid transparent;">
+        <figure style="margin:0;flex:0 0 auto;width:clamp(190px,20vw,280px);aspect-ratio:4/5;background:#FFFFFF;border:1px solid transparent;overflow:hidden;">
+          <img src="assets/portrait.jpg" alt="Olivia Tao" style="display:block;width:100%;height:100%;object-fit:cover;">
+        </figure>
+        <div style="max-width:430px;">
+          <h1 style="margin: 0; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: clamp(15px,1.7vw,19px); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: #454545">Olivia Tao</h1>
+          <p style="margin:clamp(20px,2.5vw,30px) 0 0;font-family:'Newsreader',Georgia,serif;font-size:clamp(15px,1.15vw,18px);line-height:1.8;color:#7C7872;">I'm currently entering my second year of Industrial Design at Pratt Institute in Brooklyn, New York. I'm interested in how product design can support the way we live and feel — and in the intersection of health, beauty, and wellness.</p>
+          <p style="margin:16px 0 0;font-family:'Newsreader',Georgia,serif;font-size:clamp(15px,1.15vw,18px);line-height:1.8;color:#7C7872;">As a kid I always gravitated toward hands-on activities — disassembling old jewelry, rebuilding lego sets, and fixing computers. Those habits pushed me toward exploring how things are made, and toward collaborating across disciplines to push a design further.</p>
+          <p style="margin:clamp(30px,4vw,48px) 0 0;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#B5B0A6;">Scroll&nbsp;&nbsp;→</p>
+        </div>
+      </section>
+
+      <section style="flex:0 0 auto;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(40px,5vw,84px);border-right:1px solid transparent;width:clamp(360px,40vw,520px);">
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Education</h2>
+        <div>
+          <sc-for list="{{ education }}" as="e" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:clamp(16px,2vw,22px);padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid transparent;transition:transform .4s cubic-bezier(.22,.61,.36,1);" style-hover="transform:translateX(8px);">
+              <div style="flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1.5px solid #D8CCB0;background:#E9E0CC;display:flex;align-items:center;justify-content:center;"><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:8px;letter-spacing:0.04em;color:#8A8A8A;">{{ e.logo }}</span></div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;">
+                <div><p style="margin:0;font-size:16px;font-weight:600;">{{ e.place }}</p><p style="margin:4px 0 0;font-size:14px;color:#9A9892;">{{ e.detail }}</p></div>
+                <span style="font-size:13px;color:#6E6E6E;white-space:nowrap;letter-spacing:0.04em;">{{ e.when }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="flex:0 0 auto;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(40px,5vw,84px);border-right:1px solid transparent;width:clamp(380px,44vw,580px);">
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Experience</h2>
+        <div>
+          <sc-for list="{{ experience }}" as="x" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid transparent;transition:transform .4s cubic-bezier(.22,.61,.36,1);" style-hover="transform:translateX(8px);">
+              <div><p style="margin:0;font-size:16px;font-weight:600;">{{ x.place }}</p><p style="margin:4px 0 0;font-size:14px;color:#9A9892;max-width:42ch;">{{ x.detail }}</p></div>
+              <span style="font-size:13px;color:#6E6E6E;white-space:nowrap;letter-spacing:0.04em;">{{ x.when }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="flex:0 0 auto;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(40px,5vw,84px);border-right:1px solid transparent;width:clamp(360px,40vw,520px);">
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Awards</h2>
+        <div>
+          <sc-for list="{{ awards }}" as="a" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:clamp(16px,2vw,22px);padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid transparent;transition:transform .4s cubic-bezier(.22,.61,.36,1);" style-hover="transform:translateX(8px);">
+              <div style="flex:0 0 auto;width:52px;height:52px;border-radius:50%;overflow:hidden;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><img src="{{ a.img }}" alt="{{ a.place }}" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;">
+                <div><p style="margin:0;font-size:16px;font-weight:600;">{{ a.place }}</p><p style="margin:4px 0 0;font-size:14px;color:#9A9892;">{{ a.detail }}</p></div>
+                <span style="font-size:13px;color:#6E6E6E;white-space:nowrap;letter-spacing:0.04em;">{{ a.when }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="flex:0 0 auto;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(40px,5vw,84px);border-right:1px solid transparent;width:clamp(360px,40vw,520px);">
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Skills</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;margin-bottom:clamp(34px,4vw,52px);">
+          <sc-for list="{{ skills }}" as="s" hint-placeholder-count="7">
+            <p style="margin:0;font-size:15px;color:#7C7872;">{{ s }}</p>
+          </sc-for>
+        </div>
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Software</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;margin-bottom:clamp(34px,4vw,52px);">
+          <sc-for list="{{ software }}" as="sw" hint-placeholder-count="6">
+            <p style="margin:0;font-size:15px;color:#7C7872;">{{ sw }}</p>
+          </sc-for>
+        </div>
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Languages</h2>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+          <sc-for list="{{ languages }}" as="l" hint-placeholder-count="2">
+            <p style="margin:0;font-size:15px;color:#7C7872;">{{ l }}</p>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="flex:0 0 auto;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(40px,5vw,84px);border-right:1px solid transparent;width:clamp(360px,40vw,520px);">
+        <h2 style="margin: 0 0 clamp(28px,3vw,42px); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: #454545">Leadership &amp; Activities</h2>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <sc-for list="{{ activities }}" as="ac" hint-placeholder-count="3">
+            <p style="margin:0;font-size:16px;color:#7C7872;padding-bottom:18px;border-bottom:1px solid #EDEDEA;">{{ ac }}</p>
+          </sc-for>
+        </div>
+      </section>
+
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============================ RESUME ============================ -->
+  <sc-if value="{{ isResume }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:940px;margin:0 auto;padding:clamp(40px,6vw,80px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#6E6A63;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:clamp(18px,2.5vw,26px);animation:menuItemIn .7s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <p style="margin:0;font-size:12px;letter-spacing:0.04em;color:#9A9892;display:flex;align-items:center;gap:8px;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;"></span>Click any text to edit — changes save automatically.</p>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <button onClick="{{ resetResume }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#9A9892;padding:0;" style-hover="color:#1B1B1A;">Reset</button>
+        <a href="#" download="" style="text-decoration:none;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#FFFFFF;background:#6E6A63;padding:12px 20px;transition:opacity .2s ease;white-space:nowrap;" style-hover="opacity:0.82;">Download PDF</a>
+      </div>
+    </div>
+
+    <article style="border:1px solid transparent;background:#FBFAF4;padding:clamp(26px,3.6vw,52px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.14s;">
+      <div data-resume-sheet="" ref="{{ resumeRef }}" contenteditable="true" spellcheck="false"></div>
+    </article>
+  </main>
+  </sc-if>
+
+  <!-- ============================ CONTACT ============================ -->
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ true }}">
+  <main style="min-height:calc(100vh - 66px);display:flex;align-items:center;color:#6E6A63;">
+    <div style="max-width:1000px;margin:0 auto;width:100%;padding:clamp(48px,7vw,90px) clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(32px,5vw,72px);align-items:center;">
+      <figure style="grid-column:span 5;margin:0;aspect-ratio:4/5;border:1px solid transparent;background:#EEE8DB;overflow:hidden;">
+        <img src="assets/hero-park-2.jpg" alt="Central Park in spring" style="display:block;width:100%;height:100%;object-fit:cover;object-position:68% 55%;">
+      </figure>
+      <div style="grid-column:span 7;">
+        <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-size:clamp(30px,4vw,48px);font-weight:400;letter-spacing:-0.005em;">Olivia Tao</h1>
+        <p style="margin:14px 0 clamp(28px,4vw,40px);font-size:15px;line-height:1.6;color:#5E5C58;max-width:42ch;">Open to industrial design internships and conversations — feel free to reach out!</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+          <div style="display:flex;gap:16px;align-items:baseline;"><span style="flex:0 0 64px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9A9892;">Email</span><a href="mailto:otao@pratt.edu" style="font-size:17px;color:#6E6A63;text-decoration:none;border-bottom:1px solid #D8D5CF;" style-hover="border-color:#1B1B1A;">otao@pratt.edu</a></div>
+          <div style="display:flex;gap:16px;align-items:baseline;"><span style="flex:0 0 64px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9A9892;">Phone</span><a href="tel:+17345461871" style="font-size:17px;color:#6E6A63;text-decoration:none;border-bottom:1px solid #D8D5CF;" style-hover="border-color:#1B1B1A;">(734) 546-1871</a></div>
+        </div>
+        <div style="display:flex;gap:22px;flex-wrap:wrap;">
+          <a href="#" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#5E5C58;text-decoration:none;" style-hover="color:#1B1B1A;">LinkedIn</a>
+          <a href="https://instagram.com/olivia.tao_" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#5E5C58;text-decoration:none;" style-hover="color:#1B1B1A;">Instagram</a>
+          <a href="mailto:otao@pratt.edu" style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#5E5C58;text-decoration:none;" style-hover="color:#1B1B1A;">Email</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============================ FINE ART ============================ -->
+
+  <!-- ============================ SKETCHES ============================ -->
+  <sc-if value="{{ isSketch }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1320px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(24px,6vw,80px) clamp(80px,11vw,150px);color:#6E6A63;">
+    <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <button onClick="{{ navArt }}" style="display:block;background:none;border:none;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;padding:0;margin:0 0 clamp(28px,3.5vw,40px);" style-hover="color:#1B1B1A;">← Artwork</button>
+      <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Sketches — Studies</p>
+      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
+      <p style="margin:clamp(24px,3vw,36px) 0 0;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Charcoal, Neocolor, and acrylic studies.</p>
+      <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
+      <sc-for list="{{ sketchworks }}" as="a" hint-placeholder-count="4">
+        <figure data-sr="" style="margin:0;">
+          <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ a.onZoom }}" style="{{ a.frameStyle }}"><img src="{{ a.thumb }}" alt="{{ a.title }}" style="{{ a.imgStyle }}"></div>
+          </sc-if>
+          <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
+            <div style="{{ a.frameStyle }}">
+              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+            </div>
+          </sc-if>
+          <div style="margin-top:clamp(16px,1.6vw,22px);">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">{{ a.title }}</h3>
+              <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;white-space:nowrap;">{{ a.year }}</span>
+            </div>
+            <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
+            <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
+              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>{{ a.award }}</p>
+            </sc-if>
+          </div>
+        </figure>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============================ 3D SCULPTURES ============================ -->
+  <sc-if value="{{ isSculpt }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1320px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(24px,6vw,80px) clamp(80px,11vw,150px);color:#6E6A63;">
+    <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <button onClick="{{ navArt }}" style="display:block;background:none;border:none;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;padding:0;margin:0 0 clamp(28px,3.5vw,40px);" style-hover="color:#1B1B1A;">← Artwork</button>
+      <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">3D Sculptures</p>
+      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
+      <p style="margin:clamp(24px,3vw,36px) 0 0;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Sculptural studies in wood — where structure, balance, and material meet. The same instincts that drive my product work, made physical.</p>
+      <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
+      <sc-for list="{{ sculpt3dworks }}" as="a" hint-placeholder-count="1">
+        <figure data-sr="" style="margin:0;">
+          <div onClick="{{ a.onZoom }}" style="{{ a.frameStyle }}"><img src="{{ a.thumb }}" alt="{{ a.title }}" style="{{ a.imgStyle }}"></div>
+          <div style="margin-top:clamp(16px,1.6vw,22px);">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">{{ a.title }}</h3>
+              <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;white-space:nowrap;">{{ a.year }}</span>
+            </div>
+            <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
+            <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
+              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>{{ a.award }}</p>
+            </sc-if>
+          </div>
+        </figure>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:120;background:rgba(20,18,16,0.93);display:flex;align-items:center;justify-content:center;padding:clamp(20px,5vw,72px);cursor:zoom-out;">
+      <img src="{{ lightboxSrc }}" alt="" style="max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+      <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:fixed;top:24px;right:28px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.4);background:none;color:#FFFFFF;font-size:17px;cursor:pointer;">✕</button>
+    </div>
+  </sc-if>
+
+  <!-- ============================ FINE ART ============================ -->
+  <sc-if value="{{ isArt }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1320px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(24px,6vw,80px) clamp(80px,11vw,150px);color:#6E6A63;">
+    <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Fine Art — Foundation</p>
+      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
+      <p style="margin:clamp(24px,3vw,36px) 0 0;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Before I pursued industrial design I spent many years of studio practice in painting and drawing. These efforts are recognized through my fine arts portfolio, which has shaped the way I see form, light, and material. The pieces below act as the foundation for my design eye.</p>
+      <div style="margin:clamp(26px,3vw,34px) 0 0;display:flex;flex-direction:column;gap:11px;">
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Scholastic Regional Gold Key · Portfolio</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Scholastic Regional Silver Key · Portfolio</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Federal Duck Stamp Winner</p>
+      </div>
+      <p style="margin:clamp(20px,2.4vw,28px) 0 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11px;letter-spacing:0.04em;color:#A8A39A;"><span>Use the ↑ ↓ on each piece to reorder — your arrangement is saved. Click any image to enlarge.</span><button onClick="{{ resetArtOrder }}" style="background:none;border:1px solid #DCD7CC;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6E6A63;padding:7px 14px;transition:background .2s ease,color .2s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">Reset order</button></p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
+      <sc-for list="{{ artworks }}" as="a" hint-placeholder-count="6">
+        <figure data-sr="" style="margin:0;">
+          <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ a.onZoom }}" style="{{ a.frameStyle }}"><img src="{{ a.thumb }}" alt="{{ a.title }}" style="{{ a.imgStyle }}"></div>
+          </sc-if>
+          <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
+            <div style="{{ a.frameStyle }}">
+              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+            </div>
+          </sc-if>
+          <div style="margin-top:clamp(16px,1.6vw,22px);">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">{{ a.title }}</h3>
+              <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;white-space:nowrap;">{{ a.year }}</span>
+            </div>
+            <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
+            <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
+              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>{{ a.award }}</p>
+            </sc-if>
+            <div style="margin-top:14px;display:flex;gap:7px;">
+              <button onClick="{{ a.moveUp }}" aria-label="Move earlier" style="width:30px;height:30px;border:1px solid #DCD7CC;background:#FFFFFF;border-radius:50%;cursor:pointer;color:#6E6A63;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s ease,color .2s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">↑</button>
+              <button onClick="{{ a.moveDown }}" aria-label="Move later" style="width:30px;height:30px;border:1px solid #DCD7CC;background:#FFFFFF;border-radius:50%;cursor:pointer;color:#6E6A63;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s ease,color .2s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">↓</button>
+            </div>
+          </div>
+        </figure>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:clamp(56px,7vw,96px);">
+      <button onClick="{{ navSketch }}" style="background:none;border:1px solid #C9C4BA;cursor:pointer;font-family:inherit;font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;color:#6E6E6E;padding:11px 24px;transition:background .25s ease,color .25s ease,border-color .25s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">View sketches →</button>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============================ FOOTER ============================ -->
+  <sc-if value="{{ notContact }}" hint-placeholder-val="{{ true }}">
+  <footer style="border-top:1px solid transparent;background:#FFFFFF;">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(80px,11vw,150px) clamp(20px,5vw,72px) clamp(28px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(28px,4vw,52px);">
+      <div>
+        <p style="margin:0;font-weight:600;font-size:13px;letter-spacing:0.2em;color:#B8B2A6;">OLIVIA TAO</p>
+        <p style="margin:12px 0 0;font-size:13px;color:#B8B2A6;">Industrial Designer · Brooklyn, NY</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ADA9A2;">Menu</p>
+        <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">Work</button>
+        <button onClick="{{ navAbout }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">About</button>
+        <button onClick="{{ navArt }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">Artwork</button>
+        <button onClick="{{ navResume }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">Resume</button>
+        <button onClick="{{ navContact }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">Contact</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ADA9A2;">Elsewhere</p>
+        <a href="mailto:otao@pratt.edu" style="text-decoration:none;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">otao@pratt.edu</a>
+        <a href="https://instagram.com/olivia.tao_" target="_blank" rel="noopener" style="text-decoration:none;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">@olivia.tao_</a>
+        <a href="#" target="_blank" rel="noopener" style="text-decoration:none;font-size:14px;color:#A8A39A;" style-hover="color:#1B1B1A;">LinkedIn</a>
+      </div>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(32px,4vw,48px);">
+      <span style="font-size:12px;color:#ADA9A2;">© 2026 Olivia Tao</span>
+    </div>
+  </footer>
+  </sc-if>
+
+  <sc-if value="{{ transitioning }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:fixed;inset:0;z-index:100;background:#16130F;pointer-events:none;animation:pageSweep .72s cubic-bezier(.76,0,.24,1) both;"></div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { route: 'work', project: 'p1', menuOpen: false, menuClosing: false, transitioning: false, typed: 'care', showAll: false };
+  RESUME_KEY = 'oliviaResumeHTML_v5';
+
+  componentDidMount() {
+    this._twWords = ['care', 'age', 'style', 'connection', 'dignity', 'independence', 'comfort', 'service'];
+    this._twWord = 0;
+    this._twChar = (this._twWords[0]).length;
+    this._twDeleting = false;
+    this._twTimer = setTimeout(() => this._twTick(), 1600);
+  }
+  componentWillUnmount() {
+    clearTimeout(this._twTimer);
+    clearTimeout(this._navT1); clearTimeout(this._navT2); clearTimeout(this._closeT);
+  }
+  _twTick() {
+    const word = this._twWords[this._twWord];
+    let delay;
+    if (!this._twDeleting) {
+      this._twChar++;
+      if (this._twChar >= word.length) { this._twChar = word.length; this._twDeleting = true; delay = 2600; }
+      else { delay = 170 + Math.random() * 90; }
+    } else {
+      this._twChar--;
+      if (this._twChar <= 0) { this._twChar = 0; this._twDeleting = false; this._twWord = (this._twWord + 1) % this._twWords.length; delay = 700; }
+      else { delay = 95; }
+    }
+    this.setState({ typed: this._twWords[this._twWord].slice(0, this._twChar) });
+    this._twTimer = setTimeout(() => this._twTick(), delay);
+  }
+
+  _navigate(apply) {
+    if (this.state.transitioning) return;
+    if (this.state.menuOpen) this.startClose();
+    this.setState({ transitioning: true });
+    clearTimeout(this._navT1); clearTimeout(this._navT2);
+    this._navT1 = setTimeout(() => { apply(); try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }, 330);
+    this._navT2 = setTimeout(() => this.setState({ transitioning: false }), 720);
+  }
+  go(route) { this._navigate(() => this.setState({ route })); }
+  openMenu() { clearTimeout(this._closeT); this.setState({ menuOpen: true, menuClosing: false }); }
+  closeMenu() { this.startClose(); }
+  startClose() {
+    if (!this.state.menuOpen || this.state.menuClosing) return;
+    this.setState({ menuClosing: true });
+    clearTimeout(this._closeT);
+    this._closeT = setTimeout(() => this.setState({ menuOpen: false, menuClosing: false }), 360);
+  }
+  open(id) { this._navigate(() => this.setState({ route: 'project', project: id })); }
+  openLightbox(src) { if (src) this.setState({ lightbox: src }); }
+  closeLightbox() { this.setState({ lightbox: null }); }
+  _loadArtOrder() { if (this._artOrderLoaded) return; this._artOrderLoaded = true; try { this._artOrder = JSON.parse(localStorage.getItem('oliviaArtOrder_v1')); } catch (e) { this._artOrder = null; } }
+  moveArt(orderedIds, id, dir) { const ids = orderedIds.slice(); const i = ids.indexOf(id); const j = i + dir; if (i < 0 || j < 0 || j >= ids.length) return; const t = ids[i]; ids[i] = ids[j]; ids[j] = t; this._artOrder = ids; try { localStorage.setItem('oliviaArtOrder_v1', JSON.stringify(ids)); } catch (e) {} this.forceUpdate(); }
+  resetArtOrder() { this._artOrder = null; try { localStorage.removeItem('oliviaArtOrder_v1'); } catch (e) {} this.forceUpdate(); }
+  linkStyle(active) {
+    return {
+      background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+      fontSize: '10.5px', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '4px 0',
+      color: active ? '#1B1B1A' : '#9A9892', fontWeight: active ? 600 : 500,
+      borderBottom: active ? '1px solid #1B1B1A' : '1px solid transparent', transition: 'color .25s ease'
+    };
+  }
+
+  renderVals() {
+    const route = this.state.route;
+    const open = (id) => () => this.open(id);
+    const menuOpen = this.state.menuOpen;
+    const menuClosing = this.state.menuClosing;
+    const overlayBase = { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 60, background: '#E7E6E2', boxShadow: '0 18px 44px rgba(0,0,0,0.14)' };
+    let overlayStyle;
+    if (menuClosing) {
+      overlayStyle = Object.assign({}, overlayBase, { opacity: 1, visibility: 'visible', pointerEvents: 'none', animation: 'panelUp .34s cubic-bezier(.4,0,.7,.2) forwards' });
+    } else if (menuOpen) {
+      overlayStyle = Object.assign({}, overlayBase, { opacity: 1, visibility: 'visible', pointerEvents: 'auto', animation: 'panelDown .42s cubic-bezier(.22,.61,.36,1) both' });
+    } else {
+      overlayStyle = Object.assign({}, overlayBase, { opacity: 0, visibility: 'hidden', pointerEvents: 'none', transform: 'translateY(-100%)' });
+    }
+
+    const rawProjects = [
+      { id: 'p1', title: 'Andon', type: 'Elderly Wellness', year: '2025', video: 'assets/summer-project.mp4', still: 'assets/summer-still.png', real: false },
+      { id: 'p2', title: 'Project 02', type: 'Category', year: '2025', ph: 'project image', real: false },
+    ];
+    const collage = [
+      { aspect: '4 / 5', mt: '0' },
+      { aspect: '3 / 4', mt: 'clamp(30px,5vw,70px)' },
+      { aspect: '4 / 5', mt: '0' },
+      { aspect: '5 / 6', mt: 'clamp(30px,5vw,70px)' },
+    ];
+    const cellFig = { position: 'relative', aspectRatio: '1 / 1', overflow: 'hidden', background: '#F3F1EA' };
+    const projects = rawProjects.map((p, i) => {
+      return {
+        ...p,
+        num: String(i + 1).padStart(2, '0'),
+        isVideo: !!p.video,
+        notReal: !p.real && !p.video,
+        onOpen: open(p.id),
+        cardStyle: { position: 'relative', display: 'flex', flexDirection: 'column', background: 'none', border: 'none', borderRight: '1px solid transparent', borderBottom: '1px solid transparent', padding: 0, margin: 0, font: 'inherit', color: 'inherit', textAlign: 'left', cursor: 'pointer' },
+        figStyleMedia: { ...cellFig },
+        stillStyle: { position: 'absolute', inset: 0, width: '100%', height: '100%', backgroundImage: p.still ? `url("${p.still}")` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' },
+        figStylePh: { ...cellFig, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+        onEnter: (e) => { const v = e.currentTarget.querySelector('video'); if (v) { try { v.muted = true; v.loop = true; v.currentTime = 0; v.style.opacity = '1'; const r = v.play(); if (r && r.catch) r.catch(() => {}); } catch (err) {} } },
+        onLeave: (e) => { const v = e.currentTarget.querySelector('video'); if (v) { try { v.pause(); v.style.opacity = '0'; } catch (err) {} } },
+      };
+    });
+    const trackRef = (el) => { this._track = el; };
+    const scrollBy = (dir) => { const t = this._track; if (!t) return; const card = t.querySelector('button'); const amt = card ? card.getBoundingClientRect().width + 26 : 320; t.scrollBy({ left: dir * amt, behavior: 'smooth' }); };
+    const scrollPrev = () => scrollBy(-1);
+    const scrollNext = () => scrollBy(1);
+    const aboutScrollRef = (el) => {
+      if (!el || el.dataset.bound) return;
+      el.dataset.bound = '1';
+      el.addEventListener('wheel', (e) => {
+        if (el.scrollWidth <= el.clientWidth) return;
+        if (Math.abs(e.deltaY) >= Math.abs(e.deltaX)) { el.scrollLeft += e.deltaY; e.preventDefault(); }
+      }, { passive: false });
+    };
+
+    const cpMap = {
+      p1: {
+        title: 'Andon', typeYear: 'Elderly Wellness — 2025',
+        paras: [
+          'Andon is a bedside wellness lamp for older adults — bringing warm, dimmable light together with gentle scent and sound in one quiet object.',
+          'These sketchbook pages trace the project from its place in the room through to a resolved form and mechanism. The film below shows the finished work.'
+        ],
+        ideation: [
+          { num: '01', title: 'Context', cols: '1fr',
+            caption: 'Where the lamp lives \u2014 set at the foot of the bed, with a bedside control to switch it off and a door sensor that registers when the room has been entered.',
+            plates: [{ src: 'assets/andon-poster-context.png', alt: 'Bedroom context study' }] },
+          { num: '02', title: 'Form Development', cols: '1fr',
+            caption: 'From two opening silhouettes \u2014 a faceted octagonal lantern and a stacked volume \u2014 through desk and floor refinements and a fabric variation, to the resolved tiered form and the drawer that lifts to release scent.',
+            plates: [{ src: 'assets/andon-poster-forms.png', alt: 'Form development \u2014 six studies' }] }
+        ],
+        gallery: [{ kind: 'video', src: 'assets/summer-project.mp4', caption: 'Andon — full film.' }]
+      }
+    };
+    const cp = cpMap[this.state.project] || (() => {
+      const p = rawProjects.find(x => x.id === this.state.project) || {};
+      return {
+        title: p.title || 'Project', typeYear: ((p.type || 'Concept') + ' — ' + (p.year || '2024')),
+        paras: ['A full case study for this project is in progress. Below is the layout that will hold the documentation, process imagery, and outcomes once the work is photographed.'],
+        gallery: [{ kind: 'ph', label: 'hero image', caption: '' }, { kind: 'ph', label: 'process', caption: '' }]
+      };
+    })();
+    const cpGallery = cp.gallery.map(g => ({ ...g, isImage: g.kind === 'image', isVideo: g.kind === 'video', isPh: g.kind !== 'image' && g.kind !== 'video' }));
+    const cpPhases = (cp.ideation || []).map(ph => ({
+      ...ph,
+      plates: ph.plates.map(pl => ({ ...pl, hasLabel: !!pl.label, onZoom: () => this.openLightbox(pl.src) }))
+    }));
+    const cpHasIdeation = cpPhases.length > 0;
+    const videoRef = (el) => { if (el) { el.controls = true; el.loop = true; } };
+
+    const education = [
+      { place: 'Pratt Institute', detail: 'BID, Industrial Design — Brooklyn, NY', when: '2025 — 2029', logo: 'Pratt' },
+      { place: 'Pioneer High School', detail: 'Ann Arbor, MI', when: '2021 — 2025', logo: 'PHS' },
+    ];
+    const experience = [
+      { place: 'Art Teacher\u2019s Assistant', detail: 'Led hands-on studio sessions for younger students in painting, clay, and ink.', when: '2024 — 2025' },
+      { place: 'English Tutor', detail: 'One-on-one and small-group tutoring across reading, writing, and conversation.', when: '2024 — 2025' },
+      { place: 'Online English Tutor', detail: 'Built custom lesson materials and tracked progress for remote students.', when: '2023 — 2024' },
+    ];
+    const awards = [
+      { place: 'Scholastic Art Awards', detail: 'Regional recognition', when: '2024', logo: 'SAA', img: 'assets/award-scholastic-3.png' },
+      { place: 'Pratt FoundationFolio Winner', detail: 'Top foundation-year portfolio', when: '2026', logo: 'Pratt', img: 'assets/award-pratt.jpg' },
+      { place: "President's List", detail: 'Pratt Institute', when: 'Fall 2025', logo: 'Pratt', img: 'assets/award-pratt.jpg' },
+      { place: 'Federal Duck Stamp', detail: 'National recognition · ages 12 & 14', when: '2021 / 2023', logo: 'USFWS', img: 'assets/award-duckstamp.png' },
+    ];
+    const software = ['Rhino 3D', 'SolidWorks', 'Keyshot', 'Blender', 'Figma', 'PowerPoint / Keynote'];
+    const activities = ['NCAA Division III Varsity Tennis — Pratt'];
+    const skills = ['Sketching & ideation', 'CAD — Rhino, Fusion 360', 'Foam & clay modeling', 'Figma & prototyping', 'CNC & laser cutting', 'Cross-cultural communication', 'Teaching & mentorship'];
+    const languages = ['English — fluent', 'Chinese — fluent'];
+
+    const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // existing sidebar lists (unchanged)
+    const skillsLI = skills.map(s => `<li style="font-size:13px;line-height:1.45;color:#7C7872;">${esc(s)}</li>`).join('');
+    const langLI = languages.map(s => `<li style="font-size:13px;line-height:1.45;color:#7C7872;">${esc(s)}</li>`).join('');
+    // NEW additive content only
+    const rSoftware = ['Rhino 3D', 'SolidWorks', 'Keyshot', 'Blender', 'Figma', 'PowerPoint / Keynote'];
+    const rActivities = ['NCAA Division III Varsity Tennis — Pratt Institute', 'Youth small-group leader — church ministry', 'Praise team leader'];
+    const rSummary = 'Second-year industrial design student interested in the intersection of health, wellness, and technology. Award-winning portfolio work paired with hands-on skills across sketching, CAD, and physical modeling. Brings teaching experience, cross-cultural communication, and the discipline of a collegiate athlete to collaborative teams.';
+    const rExperience = [
+      { place: 'Art Teacher’s Assistant', when: '2024 — 2025', detail: 'Led hands-on studio sessions for younger students in painting, clay, and ink. Overlooked summer camps and helped organize curricula and materials for the program.' },
+      { place: 'English Tutor', when: '2024 — 2025', detail: 'One-on-one K-12 tutoring across reading, writing, and conversation.' },
+      { place: 'Online English Tutor', when: '2023 — 2024', detail: 'Built custom lesson materials and tracked progress for remote students.' },
+    ];
+    const rEducation = [
+      { place: 'Pratt Institute', when: '2025 — 2029', detail: 'BID, Industrial Design — Brooklyn, NY' },
+      { place: 'Pioneer High School', when: '2021 — 2025', detail: 'Ann Arbor, MI' },
+    ];
+    const rAwards = [
+      { place: 'Scholastic Art Awards', when: '2024', detail: 'Regional recognition' },
+      { place: 'Foundation Year Award', when: '2025', detail: 'Pratt Institute' },
+      { place: 'Pratt FoundationFolio Winner', when: '2026', detail: 'Selected for the top foundation-year portfolio across the incoming class.' },
+      { place: "President's List — Pratt Institute", when: 'Fall 2025', detail: 'Highest tier of academic honors for the semester.' },
+    ];
+    const litem = (s) => `<li style="font-size:13px;line-height:1.45;color:#7C7872;">${esc(s)}</li>`;
+    const entryHTML = (rows, detailColor) => rows.map(r => `<div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;"><p style="margin:0;font-size:15px;font-weight:600;">${esc(r.place)}</p>${r.when ? `<span style="font-size:12px;color:#9A9892;white-space:nowrap;">${esc(r.when)}</span>` : ''}</div>${r.detail ? `<p style="margin:4px 0 0;font-size:13px;line-height:1.5;color:${detailColor};">${esc(r.detail)}</p>` : ''}</div>`).join('');
+    const resumeDefaultHTML = `
+      <header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:18px;padding-bottom:clamp(20px,2.6vw,28px);border-bottom:1px solid transparent;">
+        <div>
+          <h1 style="margin:0;font-size:clamp(26px,3.2vw,38px);font-weight:600;letter-spacing:-0.01em;">Olivia Tao</h1>
+          <p style="margin:7px 0 0;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#9A9892;">Industrial Designer</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;font-size:13px;color:#7C7872;">
+          <span>(734) 546-1871</span>
+          <span>otao@pratt.edu</span>
+          <span>@olivia.tao_</span>
+        </div>
+      </header>
+      <div style="display:grid;grid-template-columns:minmax(168px,230px) 1fr;gap:clamp(24px,4vw,48px);margin-top:clamp(24px,3vw,36px);align-items:start;">
+        <aside style="background:#EDE7DA;padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;gap:clamp(20px,2.4vw,28px);">
+          <div>
+            <h2 style="margin:0 0 12px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Skills</h2>
+            <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:7px;">${skillsLI}</ul>
+          </div>
+          <div>
+            <h2 style="margin:0 0 12px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Software</h2>
+            <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:7px;">${rSoftware.map(litem).join('')}</ul>
+          </div>
+          <div>
+            <h2 style="margin:0 0 12px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Leadership &amp; Activities</h2>
+            <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:7px;">${rActivities.map(litem).join('')}</ul>
+          </div>
+          <div>
+            <h2 style="margin:0 0 12px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Languages</h2>
+            <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:7px;">${langLI}</ul>
+          </div>
+        </aside>
+        <div style="display:flex;flex-direction:column;gap:clamp(22px,3vw,32px);">
+          <section>
+            <h2 style="margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid transparent;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Summary</h2>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:#7C7872;">${esc(rSummary)}</p>
+          </section>
+          <section>
+            <h2 style="margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid transparent;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">About</h2>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:#7C7872;">I'm currently in my second year of Industrial Design at Pratt Institute in Brooklyn, New York. I'm interested in how product design can seamlessly support the way we live and feel — and in the intersection of health, beauty, and wellness.</p>
+            <p style="margin:10px 0 0;font-size:14px;line-height:1.6;color:#7C7872;">As a kid, I always gravitated toward hands-on activities — disassembling old jewelry, rebuilding LEGO sets, and building furniture. Those habits pushed me to explore how things are made and to collaborate across disciplines to advance a design.</p>
+          </section>
+          <section>
+            <h2 style="margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid transparent;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Work Experience</h2>
+            <div>${entryHTML(rExperience, '#9A9892')}</div>
+          </section>
+          <section>
+            <h2 style="margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid transparent;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Education</h2>
+            <div>${entryHTML(rEducation, '#9A9892')}</div>
+          </section>
+          <section>
+            <h2 style="margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid transparent;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;">Awards</h2>
+            <div>${entryHTML(rAwards, '#9A9892')}</div>
+          </section>
+        </div>
+      </div>`;
+    this._resumeDefaultHTML = resumeDefaultHTML;
+    const resumeRef = (el) => {
+      if (!el || el.dataset.bound) return;
+      el.dataset.bound = '1';
+      this._resumeEl = el;
+      let saved = null;
+      try { saved = localStorage.getItem(this.RESUME_KEY); } catch (e) {}
+      el.innerHTML = (saved != null && saved !== '') ? saved : resumeDefaultHTML;
+      el.addEventListener('input', () => { try { localStorage.setItem(this.RESUME_KEY, el.innerHTML); } catch (e) {} });
+    };
+    const resetResume = () => {
+      try { localStorage.removeItem(this.RESUME_KEY); } catch (e) {}
+      if (this._resumeEl) this._resumeEl.innerHTML = this._resumeDefaultHTML;
+    };
+
+    const artFrameBase = { background: '#F2F0EA', border: '1px solid #EDEDEA', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' };
+    const artRaw = [
+      { id: 'tobeseen', ph: 'acrylic', title: 'To Be Seen', medium: 'Acrylic', year: '2026', award: 'FoundationFolio', img: 'assets/art-tobeseen.jpg', aspect: '4 / 5' },
+      { id: 'numb', ph: 'oil pastel', title: 'Numb', medium: 'Oil pastel · 40 × 60 in', year: '2026', award: 'FoundationFolio', img: 'assets/art-numb.jpg', aspect: '8 / 7' },
+      { id: 'chomp', ph: 'digital art', title: 'Chomp!', medium: 'Digital art', year: '2026', award: 'FoundationFolio', img: 'assets/art-chomp.gif', aspect: '4 / 3' },
+      { id: 'vr', ph: 'acrylic', title: 'VR Study', medium: 'Acrylic', year: '2026', award: 'FoundationFolio', img: 'assets/art-vr.jpg', aspect: '4 / 3' },
+      { id: 'lcd', ph: 'oil', title: 'LCD Homework', medium: 'Oil on canvas', year: '2026', img: 'assets/art-lcd.jpg', aspect: '7 / 5' },
+      { id: 'paradise', ph: 'watercolor', title: 'Paradise', medium: 'Watercolor', year: '2025', img: 'assets/art-paradise.jpg', aspect: '4 / 3' },
+      { id: 'city', ph: 'watercolor', title: 'City', medium: 'Watercolor & ink pen', year: '2025', img: 'assets/art-city.jpg', aspect: '5 / 4' },
+      { id: 'newpath1', ph: 'colored pencil', title: 'New Path', medium: 'Colored pencil', year: '2025', img: 'assets/sketch-newpath1.jpg', aspect: '4 / 5' },
+      { id: 'newpath2', ph: 'colored pencil', title: 'New Path', medium: 'Colored pencil', year: '2025', img: 'assets/sketch-newpath2.jpg', aspect: '4 / 5' },
+      { id: 'treasurebox', ph: 'oil', title: 'Olivia’s Forgotten Treasure Box', medium: 'Oil on canvas', year: '2025', award: 'Scholastic · Gold Key', img: 'assets/art-treasurebox.jpg', aspect: '4 / 5' },
+      { id: 'perturbation', ph: 'oil', title: 'Perturbation', medium: 'Oil on canvas', year: '2025', award: 'Scholastic · Gold Key', img: 'assets/art-perturbation.jpg', aspect: '16 / 11' },
+      { id: 'beholder', ph: 'oil', title: 'Eye of the Beholder', medium: 'Oil on canvas', year: '2025', award: 'Scholastic · Silver Key', img: 'assets/art-beholder.jpg', aspect: '2 / 3' },
+      { id: 'distant', ph: 'oil', title: 'Distant', medium: 'Oil on canvas', year: '2025', award: 'Scholastic · Silver Key', img: 'assets/art-distant.jpg', aspect: '5 / 6' },
+      { id: 'firstday', ph: 'ink', title: 'First Day', medium: 'Ink pen', year: '2025', award: 'Scholastic · Gold Key', img: 'assets/art-firstday.jpg', aspect: '4 / 5' },
+      { id: 'gossip', ph: 'oil', title: 'Late Night Gossip', medium: 'Oil on canvas', year: '2024', award: 'Scholastic · Gold Key', img: 'assets/art-gossip.jpg', aspect: '3 / 4' },
+      { id: 'doctor', ph: 'oil', title: "Doctor's Appointment", medium: 'Oil on canvas', year: '2024', award: 'Scholastic · Silver Key', img: 'assets/art-doctor.jpg', aspect: '7 / 9' },
+      { id: 'contemplation', ph: 'oil', title: 'Contemplation', medium: 'Oil on canvas', year: '2024', award: 'Scholastic · Silver Key', img: 'assets/art-contemplation.jpg', aspect: '5 / 6' },
+      { id: 'reflection', ph: 'oil', title: 'Reflection', medium: 'Oil on canvas', year: '2023', award: 'Scholastic · Gold Key', img: 'assets/art-reflection.jpg', aspect: '4 / 3' },
+      { id: 'germany', ph: 'oil', title: 'Melancholy Afternoon in Germany', medium: 'Oil on canvas', year: '2022', award: 'Scholastic · Gold Key', img: 'assets/art-germany.jpg', aspect: '4 / 3' },
+      { id: 'duck', ph: 'oil', title: 'Cinnamon Teal', medium: 'Oil on canvas', year: '2023', award: 'Federal Duck Stamp · Age 14', img: 'assets/art-duck.jpg', aspect: '4 / 3' },
+      { id: 'swan', ph: 'colored pencil', title: 'Cold Feathers', medium: 'Colored pencil · Tundra Swan', year: '2021', award: 'Federal Duck Stamp · Age 12', img: 'assets/art-swan.jpg', aspect: '8 / 5' },
+    ];
+    const sculpt3dRaw = [
+      { id: 'littlewave', ph: 'wood', title: 'Little Wave', medium: 'Wood · 11 × 6 × 11 in', year: '2026', award: 'FoundationFolio', img: 'assets/sculpt-littlewave.jpg', aspect: '6 / 5', contain: false },
+      { id: 'poppy', ph: 'plaster', title: 'Poppy Flower', medium: 'Plaster', year: '2026', img: 'assets/sculpt-poppy.jpg', aspect: '1 / 1', contain: false },
+      { id: 'skull1', ph: 'wood', title: 'Skull Study I', medium: 'Wood', year: '2026', img: 'assets/sculpt-skull1.jpg', aspect: '7 / 5', contain: false },
+      { id: 'skull2', ph: 'wood', title: 'Skull Study II', medium: 'Wood', year: '2026', img: 'assets/sculpt-skull2.jpg', aspect: '6 / 5', contain: false },
+    ];
+    const sketchRaw = [
+      { title: 'Cast Study', medium: 'Charcoal', year: '2025', award: 'Scholastic · Silver Key', img: 'assets/sketch-bust.jpg', aspect: '3 / 4' },
+      { title: 'Figure Study', medium: 'Charcoal & conté', year: '2026', img: 'assets/sketch-figure.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor & charcoal', year: '2026', img: 'assets/sketch-vr1.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor & charcoal', year: '2026', img: 'assets/sketch-vr2.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor & charcoal', year: '2026', img: 'assets/sketch-vr3.jpg', aspect: '3 / 4' },
+      { title: 'VR Sketch', medium: 'Neocolor & charcoal', year: '2026', img: 'assets/sketch-vr4.jpg', aspect: '4 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor & charcoal', year: '2026', img: 'assets/sketch-vr5.jpg', aspect: '3 / 2' },
+      { title: 'VR Sketch', medium: 'Charcoal', year: '2026', img: 'assets/sketch-vr6.jpg', aspect: '3 / 4' },
+      { title: 'VR Sketch', medium: 'Neocolor & charcoal', year: '2025', img: 'assets/sketch-vr7.jpg', aspect: '4 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n01.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n02.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n03.jpg', aspect: '3 / 4' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n04.jpg', aspect: '3 / 2' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n05.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n06.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n07.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n08.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n09.jpg', aspect: '2 / 3' },
+      { title: 'VR Sketch', medium: 'Neocolor', year: '2025', img: 'assets/sketch-n10.jpg', aspect: '2 / 3' },
+    ];
+    const applyOrder = (arr, order) => { if (!order || !order.length) return arr; const map = new Map(arr.map(a => [a.id, a])); const out = []; order.forEach(id => { if (map.has(id)) { out.push(map.get(id)); map.delete(id); } }); arr.forEach(a => { if (map.has(a.id)) out.push(a); }); return out; };
+    this._loadArtOrder();
+    const orderedArt = applyOrder(artRaw, this._artOrder);
+    const orderedIds = orderedArt.map(a => a.id);
+    const frameFor = (a) => ({ ...artFrameBase, aspectRatio: a.aspect, cursor: a.img ? 'zoom-in' : 'default', background: a.contain ? '#F4F2EC' : '#F2F0EA' });
+    const imgFitFor = (a) => a.contain ? { width: '100%', height: '100%', objectFit: 'contain', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' };
+    const thumbOf = (img) => { if (!img) return img; if (img.indexOf('.gif') !== -1) return img; return img.replace(/\.(jpg|png)$/, '-t.jpg'); };
+    const artworks = orderedArt.map((a, idx) => ({ ...a, hasImg: !!a.img, noImg: !a.img, hasAward: !!a.award, thumb: thumbOf(a.img), frameStyle: frameFor(a), imgStyle: imgFitFor(a), isFirst: idx === 0, isLast: idx === orderedArt.length - 1, onZoom: () => this.openLightbox(a.img), moveUp: () => this.moveArt(orderedIds, a.id, -1), moveDown: () => this.moveArt(orderedIds, a.id, 1) }));
+    const sculpt3dworks = sculpt3dRaw.map(a => ({ ...a, hasImg: !!a.img, noImg: !a.img, hasAward: !!a.award, thumb: thumbOf(a.img), frameStyle: frameFor(a), imgStyle: imgFitFor(a), onZoom: () => this.openLightbox(a.img) }));
+    const sketchworks = sketchRaw.map(a => ({ ...a, hasImg: !!a.img, noImg: !a.img, hasAward: !!a.award, thumb: thumbOf(a.img), frameStyle: { ...artFrameBase, aspectRatio: a.aspect, cursor: a.img ? 'zoom-in' : 'default' }, imgStyle: { width: '100%', height: '100%', objectFit: 'contain', display: 'block' }, onZoom: () => this.openLightbox(a.img) }));
+
+    return {
+      route,
+      isWork: route === 'work', isWorks: route === 'works', isProject: route === 'project', isAbout: route === 'about',
+      isAndon: route === 'project' && this.state.project === 'p1',
+      isOtherProject: route === 'project' && this.state.project !== 'p1',
+      onPlateClick: (e) => { const img = e.currentTarget.querySelector('img'); if (img) this.openLightbox(img.getAttribute('src')); },
+      isResume: route === 'resume', isContact: route === 'contact', isArt: route === 'art', isSketch: route === 'sketch', notContact: route !== 'contact',
+      navWork: () => this.go('work'), navWorks: () => this.go('works'), navAbout: () => this.go('about'), navArt: () => this.go('art'), navSketch: () => this.go('sketch'),
+      navResume: () => this.go('resume'), navContact: () => this.go('contact'),
+      menuOpen, openMenu: () => this.openMenu(), closeMenu: () => this.closeMenu(), overlayStyle, transitioning: this.state.transitioning,
+      workLinkStyle: this.linkStyle(route === 'works' || route === 'project'),
+      aboutLinkStyle: this.linkStyle(route === 'about'),
+      resumeLinkStyle: this.linkStyle(route === 'resume'),
+      contactLinkStyle: this.linkStyle(route === 'contact'),
+      artLinkStyle: this.linkStyle(route === 'art'),
+      sketchLinkStyle: this.linkStyle(route === 'sketch'),
+      isSculpt: route === 'sculpt', sculptLinkStyle: this.linkStyle(route === 'sculpt'), navSculpt: () => this.go('sculpt'),
+      sculpt3dworks,
+      lightboxOpen: !!this.state.lightbox, lightboxSrc: this.state.lightbox || '', closeLightbox: () => this.closeLightbox(),
+      resetArtOrder: () => this.resetArtOrder(),
+      artworks, sketchworks,
+      projects,
+      visibleProjects: this.state.showAll ? projects : projects.slice(0, 2),
+      showAllBtn: !this.state.showAll && projects.length > 2,
+      showAllWorks: () => this.setState({ showAll: true }),
+      trackRef, scrollPrev, scrollNext, aboutScrollRef,
+      cp, cpGallery, cpPhases, cpHasIdeation, videoRef, typed: this.state.typed,
+      education, experience, awards, skills, languages, software, activities,
+      resumeRef, resetResume,
+    };
+  }
+}
+</script>
+</body>
+</html>
