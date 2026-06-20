@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olivia Tao — Industrial Designer</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -59,18 +61,8 @@
     <div style="max-width:1320px;margin:0 auto;padding:0 clamp(24px,6vw,80px);height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
       <button onClick="{{ navWork }}" style="background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;"><img src="assets/tao-logo-dark-v2.png" alt="Olivia Tao" style="height:40px;width:auto;display:block;"></button>
       <nav style="display:flex;align-items:center;gap:clamp(22px,3vw,44px);">
-        <button onClick="{{ navWorks }}" style="{{ workLinkStyle }}" style-hover="color:#1B1B1A;">Works</button>
+        <button onClick="{{ navWorks }}" style="{{ workLinkStyle }}" style-hover="color:#1B1B1A;">Projects</button>
         <button onClick="{{ navAbout }}" style="{{ aboutLinkStyle }}" style-hover="color:#1B1B1A;">About</button>
-        <span class="navdrop" style="position:relative;display:inline-flex;align-items:center;">
-          <button onClick="{{ navArt }}" style="{{ artLinkStyle }}" style-hover="color:#1B1B1A;">Artwork</button>
-          <div class="navmenu" style="position:absolute;top:100%;left:50%;margin-left:-72px;padding-top:16px;z-index:60;">
-            <div style="background:#FFFFFF;border:1px solid #EDEDEA;box-shadow:0 4px 14px rgba(0,0,0,0.04);padding:7px 0;min-width:144px;display:flex;flex-direction:column;">
-              <button onClick="{{ navArt }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;padding:10px 20px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E6A63;transition:background .2s ease,color .2s ease;" style-hover="background:#F5F2EC;color:#1B1B1A;">Artwork</button>
-              <button onClick="{{ navSketch }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;padding:10px 20px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E6A63;transition:background .2s ease,color .2s ease;" style-hover="background:#F5F2EC;color:#1B1B1A;">Sketches</button>
-              <button onClick="{{ navSculpt }}" style="background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;padding:10px 20px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E6A63;transition:background .2s ease,color .2s ease;" style-hover="background:#F5F2EC;color:#1B1B1A;">3D Sculptures</button>
-            </div>
-          </div>
-        </span>
         <button onClick="{{ navResume }}" style="{{ resumeLinkStyle }}" style-hover="color:#1B1B1A;">Resume</button>
       </nav>
     </div>
@@ -83,7 +75,7 @@
     <section style="max-width:1320px;margin:0 auto;padding:clamp(44px,6vw,92px) clamp(24px,6vw,80px) clamp(34px,4vw,56px);">
       <div style="display:grid;grid-template-columns:1.04fr 0.96fr;gap:clamp(32px,5vw,80px);align-items:center;">
         <div>
-          <p style="margin: 0 0 clamp(36px,4.5vw,56px); font-size: 11px; letter-spacing: 0.34em; line-height: 1.9; text-transform: uppercase; font-weight: 400; color: #9A9892; width: 445px">HI! I'M OLIVIA, AN INDUSTRIAL DESIGNER BASED IN BROOKLYN, NEW YORK. SCROLL TO VIEW MY WORK!</p>
+          <p style="margin: 0 0 clamp(36px,4.5vw,56px); font-size: 11px; letter-spacing: 0.34em; line-height: 1.9; text-transform: uppercase; font-weight: 400; color: #9A9892; width: 445px">HI，你好! I'M OLIVIA, AN INDUSTRIAL DESIGN STUDENT BASED IN BROOKLYN, NEW YORK. SCROLL TO VIEW MY WORK!</p>
           <p style="margin: 0; white-space: nowrap; font-size: clamp(27px,3.4vw,44px); font-family: Roboto; font-weight: 300; line-height: 1.2; letter-spacing: 0.02em; color: #9A9892">designing for <em style="font-style:normal;font-weight:400;color:#1B1B1A;white-space:nowrap;">{{ typed }}</em><span style="display:inline-block;width:2px;height:0.92em;margin-left:3px;background:#1B1B1A;vertical-align:-0.08em;animation:caret 1s steps(1,end) infinite;"></span></p>
         </div>
         
@@ -127,55 +119,216 @@
   </main>
   </sc-if>
 
+  <!-- ============================ PROJECTS (separate page) ============================ -->
+  <sc-if value="{{ isWorks }}" hint-placeholder-val="{{ false }}">
+  <main>
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(44px,6vw,92px) clamp(24px,6vw,80px) 0;display:grid;grid-template-columns:clamp(140px,18vw,220px) 1fr;gap:clamp(36px,6vw,96px);align-items:start;">
+      <nav style="position:sticky;top:90px;display:flex;flex-direction:column;gap:16px;animation:menuItemIn .7s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+        <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9A9892;">All Projects</p>
+        <sc-for list="{{ workCats }}" as="c" hint-placeholder-count="3">
+          <button onClick="{{ c.onPick }}" style="{{ c.style }}" style-hover="color:#1B1B1A;">{{ c.label }}</button>
+        </sc-for>
+        <p style="margin:clamp(44px,5.5vw,68px) 0 6px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9A9892;">Other</p>
+        <button onClick="{{ navArt }}" style="{{ otherArtStyle }}" style-hover="color:#1B1B1A;">Artwork</button>
+        <button onClick="{{ navSketch }}" style="{{ otherSketchStyle }}" style-hover="color:#1B1B1A;">Sketches</button>
+        <button onClick="{{ navSculpt }}" style="{{ otherSculptStyle }}" style-hover="color:#1B1B1A;">3D Sculptures</button>
+      </nav>
+
+      <div style="min-width:0;">
+        <sc-if value="{{ vwProjects }}" hint-placeholder-val="{{ true }}">
+        <div data-sr="" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));column-gap:clamp(22px,3vw,52px);row-gap:clamp(40px,5vw,72px);">
+        <sc-for list="{{ worksList }}" as="w" hint-placeholder-count="0">
+          <button onClick="{{ w.onOpen }}" style="background:none;border:none;padding:0;margin:0;cursor:pointer;text-align:left;display:block;">
+            <figure style="position:relative;margin:0;aspect-ratio:8/9;overflow:hidden;background:#E9EAEC;">
+              <div style="position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);" style-hover="transform:scale(1.14);">{{ w.imgNode }}</div>
+            </figure>
+            <div style="margin:clamp(15px,1.5vw,19px) 0 0;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+                <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3E3B36;">{{ w.title }}</span>
+                <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;font-size:12px;letter-spacing:0.1em;color:#9EA0A8;">{{ w.year }}</span>
+              </div>
+              <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#A7A9B0;">{{ w.sub }}</p>
+            </div>
+          </button>
+        </sc-for>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ vwArt }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:780px;margin:0 0 clamp(40px,6vw,80px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+          <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Fine Art · Foundation</p>
+          <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
+          <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1.05vw,15px);line-height:1.8;color:#7C7872;max-width:60ch;">Before I pursued industrial design I spent many years of studio practice in painting and drawing. These efforts are recognized through my fine arts portfolio, which has shaped the way I see form, light, and material. The pieces below act as the foundation for my design eye.</p>
+          <div style="margin:clamp(26px,3vw,34px) 0 0;display:flex;flex-direction:column;gap:11px;">
+            <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+            <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Scholastic Regional Gold Key · Portfolio</p>
+            <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Scholastic Regional Silver Key · Portfolio</p>
+            <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Federal Duck Stamp Winner</p>
+          </div>
+          <p style="margin:clamp(20px,2.4vw,28px) 0 0;font-size:11px;letter-spacing:0.04em;color:#A8A39A;">Click any image to enlarge.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
+          <sc-for list="{{ artworks }}" as="a" hint-placeholder-count="0">
+            <figure data-sr="" style="margin:0;">
+              <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ false }}">
+                <div onClick="{{ a.onZoom }}" style="{{ a.frameStyle }}">{{ a.imgNode }}</div>
+              </sc-if>
+              <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
+                <div style="{{ a.frameStyle }}">
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+                </div>
+              </sc-if>
+              <div style="margin-top:clamp(16px,1.6vw,22px);">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+                  <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">{{ a.title }}</h3>
+                  <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;white-space:nowrap;">{{ a.year }}</span>
+                </div>
+                <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
+                <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
+                  <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>{{ a.award }}</p>
+                </sc-if>
+              </div>
+            </figure>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:flex-start;margin-top:clamp(48px,6vw,80px);">
+          <button onClick="{{ navSketch }}" style="background:none;border:1px solid #C9C4BA;cursor:pointer;font-family:inherit;font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;color:#6E6E6E;padding:11px 24px;transition:background .25s ease,color .25s ease,border-color .25s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">View sketches →</button>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ vwSketch }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:780px;margin:0 0 clamp(40px,6vw,80px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+          <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Sketches · Studies</p>
+          <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
+          <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Charcoal, Neocolor, and acrylic studies.</p>
+          <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
+          <sc-for list="{{ sketchworks }}" as="a" hint-placeholder-count="0">
+            <figure data-sr="" style="margin:0;">
+              <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ false }}">
+                <div onClick="{{ a.onZoom }}" style="{{ a.frameStyle }}">{{ a.imgNode }}</div>
+              </sc-if>
+              <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
+                <div style="{{ a.frameStyle }}">
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+                </div>
+              </sc-if>
+              <div style="margin-top:clamp(16px,1.6vw,22px);">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+                  <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">{{ a.title }}</h3>
+                  <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;white-space:nowrap;">{{ a.year }}</span>
+                </div>
+                <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
+                <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
+                  <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>{{ a.award }}</p>
+                </sc-if>
+              </div>
+            </figure>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ vwSculpt }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:780px;margin:0 0 clamp(40px,6vw,80px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+          <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">3D Sculptures</p>
+          <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
+          <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Sculptural studies in wood, where structure, balance, and material meet. The same instincts that drive my product work, made physical.</p>
+          <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
+          <sc-for list="{{ sculpt3dworks }}" as="a" hint-placeholder-count="0">
+            <figure data-sr="" style="margin:0;">
+              <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ false }}">
+                <div onClick="{{ a.onZoom }}" style="{{ a.frameStyle }}">{{ a.imgNode }}</div>
+              </sc-if>
+              <div style="margin-top:clamp(16px,1.6vw,22px);">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+                  <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4A463F;">{{ a.title }}</h3>
+                  <span style="font-size:12px;letter-spacing:0.06em;color:#9A9892;white-space:nowrap;">{{ a.year }}</span>
+                </div>
+                <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
+                <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
+                  <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>{{ a.award }}</p>
+                </sc-if>
+              </div>
+            </figure>
+          </sc-for>
+        </div>
+        </sc-if>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
   <!-- ============================ PROJECT DETAIL ============================ -->
   <sc-if value="{{ isAndon }}" hint-placeholder-val="{{ true }}">
   <main style="max-width:880px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#565860;">
-    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(36px,5vw,60px);" style-hover="color:#1B1B1A;">← Back</button>
+    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(28px,4vw,44px);" style-hover="color:#1B1B1A;">← Back</button>
+
+    <figure style="margin:0 0 clamp(30px,4vw,48px);overflow:hidden;background:#D6D6D6;aspect-ratio:2000/820;animation:menuItemIn .9s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <img src="assets/andon-hero.png" alt="Andon — close-up of the warm-lit lantern panel" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;">
+    </figure>
 
     <h1 style="margin: 0; font-size: clamp(22px,3vw,34px); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; animation: menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards; animation-delay: .06s; color: #3E4046">Andon</h1>
     <p style="margin:14px 0 0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.13s;">Elderly Wellness · 2025</p>
 
+    <!-- QUICK FACTS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:clamp(16px,3vw,40px);margin:clamp(30px,3.6vw,42px) 0 0;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.16s;">
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Type</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Summer Project</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Year</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">2026</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Tools</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Rhino · Blender</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Role</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Self Initiated</p></div>
+    </div>
+
+    <!-- PROBLEM -->
+    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;"><span style="display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;margin-bottom:16px;">The Problem</span>My grandparents sleep badly — bright lamps keep them up, they “hate buttons,” and they’d rather not reach for pills. How might one quiet object help them wind down?</p>
+
     <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">Andon is a bedside wellness lamp for older adults, bringing warm, dimmable light together with gentle scent and sound in one quiet object.</p>
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">These pages trace the project from a sleep-habits interview with my grandparents, through ideation and modeling, to a final lit render. The film below shows the finished work.</p>
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Andon is a bedside wellness lamp for older adults, bringing warm, dimmable light together with gentle scent and sound in one quiet object.</p>
+      <sc-if value="{{ andonMore }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">These pages trace the project from a sleep-habits interview with my grandparents, through ideation and modeling, to a final lit render. The film below shows the finished work.</p>
+      </sc-if>
+      <button onClick="{{ toggleAndonMore }}" style="align-self:flex-start;margin-top:4px;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#9EA0A8;display:inline-flex;align-items:center;gap:7px;transition:color .2s ease;" style-hover="color:#1B1B1A;">{{ andonMoreLabel }}</button>
     </div>
 
     <!-- RESEARCH -->
     <section style="margin:clamp(4px,1.5vw,16px) 0 clamp(56px,7vw,88px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.3s;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(26px,3.5vw,40px);">
-        <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Research</span>
-        <span style="flex:1;height:1px;background:#DCDDE2;"></span>
-      </div>
+      <p style="margin:0 0 clamp(26px,3.5vw,40px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Research</p>
       <p style="margin:0 0 clamp(36px,5vw,56px);font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#797B83;max-width:58ch;text-wrap:pretty;">Andon began with a sleep-habits interview with my grandparents. Their answers surfaced four recurring pain points, and each one shaped a part of the final design.</p>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,3.5vw,44px);margin-bottom:clamp(44px,6vw,72px);">
+      <div style="display:flex;flex-direction:column;gap:clamp(26px,3.2vw,40px);max-width:760px;margin-bottom:clamp(44px,6vw,72px);">
 
-        <div style="border-top:1px solid #DCDDE2;padding-top:clamp(16px,1.8vw,22px);">
-          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#B0B2B9;">01</span>
-          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#3E4046;">Sleep &amp; Wellbeing</h3>
-          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#565860;text-wrap:pretty;">Poor sleep left them groggy, unfocused, and reaching for pills, sometimes awake until 2am, with headaches the next day.</p>
-          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#9EA0A8;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#B0B2B9;font-weight:600;">Response&nbsp;·&nbsp;</span>A calm bedtime ritual of light, scent, and sound to wind down without medication.</p>
+        <div style="display:grid;grid-template-columns:clamp(108px,16vw,170px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#3E4046;">Sleep &amp; wellbeing</p>
+          <div>
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">Poor sleep left them groggy, unfocused, and reaching for pills, sometimes awake until 2am, with headaches the next day.</p>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#9DA0A6;text-wrap:pretty;">Andon answers with a calm bedtime ritual of light, scent, and sound to wind down without medication.</p>
+          </div>
         </div>
 
-        <div style="border-top:1px solid #DCDDE2;padding-top:clamp(16px,1.8vw,22px);">
-          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#B0B2B9;">02</span>
-          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#3E4046;">Light</h3>
-          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#565860;text-wrap:pretty;">They find total dark unsettling, yet bedside lamps are "too bright, distracting and hard to sleep." They wanted something softer and smaller, set away from the bed.</p>
-          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#9EA0A8;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#B0B2B9;font-weight:600;">Response&nbsp;·&nbsp;</span>A low, dimmable ambient glow, warm or cool to settle a gentle grandpa-vs-grandma disagreement.</p>
+        <div style="display:grid;grid-template-columns:clamp(108px,16vw,170px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#3E4046;">Light</p>
+          <div>
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">They find total dark unsettling, yet bedside lamps are "too bright, distracting and hard to sleep." They wanted something softer and smaller, set away from the bed.</p>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#9DA0A6;text-wrap:pretty;">A low, dimmable glow, warm or cool, to settle a gentle grandpa-vs-grandma disagreement.</p>
+          </div>
         </div>
 
-        <div style="border-top:1px solid #DCDDE2;padding-top:clamp(16px,1.8vw,22px);">
-          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#B0B2B9;">03</span>
-          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#3E4046;">Scent &amp; Sound</h3>
-          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#565860;text-wrap:pretty;">Soft music helps them drift off, and they reach for essential oils and gentle scents to relax before sleep.</p>
-          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#9EA0A8;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#B0B2B9;font-weight:600;">Response&nbsp;·&nbsp;</span>A built-in speaker and a scent drawer that lifts to release fragrance.</p>
+        <div style="display:grid;grid-template-columns:clamp(108px,16vw,170px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#3E4046;">Scent &amp; sound</p>
+          <div>
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">Soft music helps them drift off, and they reach for essential oils and gentle scents to relax before sleep.</p>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#9DA0A6;text-wrap:pretty;">A built-in speaker and a scent drawer that lifts to release fragrance.</p>
+          </div>
         </div>
 
-        <div style="border-top:1px solid #DCDDE2;padding-top:clamp(16px,1.8vw,22px);">
-          <span style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);color:#B0B2B9;">04</span>
-          <h3 style="margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#3E4046;">Effortless Control</h3>
-          <p style="margin:11px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.7;color:#565860;text-wrap:pretty;">They "hate buttons" and wanted lighting to be automatic: on when someone enters the room, off when they leave, with lights down around midnight.</p>
-          <p style="margin:14px 0 0;font-size:11px;letter-spacing:0.04em;color:#9EA0A8;line-height:1.6;"><span style="text-transform:uppercase;letter-spacing:0.14em;color:#B0B2B9;font-weight:600;">Response&nbsp;·&nbsp;</span>A door sensor that registers entry, so the lamp responds on its own.</p>
+        <div style="display:grid;grid-template-columns:clamp(108px,16vw,170px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#3E4046;">Effortless control</p>
+          <div>
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">They "hate buttons" and wanted lighting to be automatic: on when someone enters the room, off when they leave, with lights down around midnight.</p>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#9DA0A6;text-wrap:pretty;">A door sensor that registers entry, so the lamp responds on its own.</p>
+          </div>
         </div>
 
       </div>
@@ -195,22 +348,47 @@
       <p style="margin:13px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9EA0A8;">From the interview notes</p>
     </section>
 
-    <!-- IDEATION -->
-    <section style="margin:clamp(4px,1.5vw,16px) 0 clamp(56px,7vw,88px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.34s;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(36px,5vw,60px);">
-        <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Ideation</span>
-        <span style="flex:1;height:1px;background:#DCDDE2;"></span>
+    <!-- HOW IT WORKS -->
+    <section style="margin:clamp(4px,1.5vw,16px) 0 clamp(56px,7vw,88px);">
+      <p style="margin:0 0 clamp(20px,2.6vw,28px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">How It Works</p>
+      <p style="margin:0 0 clamp(34px,4.5vw,52px);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;max-width:60ch;text-wrap:pretty;">Andon runs a quiet, hands-free routine across the night, tuned to my grandparents' own evening rhythm.</p>
+
+      <div style="display:flex;flex-direction:column;gap:clamp(26px,3.2vw,40px);max-width:760px;">
+
+        <div style="display:grid;grid-template-columns:clamp(96px,14vw,140px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#3E4046;">7 PM</p>
+          <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">A motion sensor in the bedroom notices movement after 7pm and begins the night routine: the lamp slowly warms on into a soft, warm light as they settle in and watch their shows.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:clamp(96px,14vw,140px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#3E4046;">10 PM</p>
+          <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">About three hours later, the scent diffuser switches on to help them relax and drift toward sleep.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:clamp(96px,14vw,140px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#3E4046;">12 AM</p>
+          <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">At midnight the light begins to dim, settling into a gentle night light. Soft music plays for a set duration, then slowly fades.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:clamp(96px,14vw,140px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#3E4046;">Through the night</p>
+          <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">The night light stays on. A button on the nightstand, or a remote, can turn it off without interrupting their wind-down.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:clamp(96px,14vw,140px) 1fr;gap:clamp(18px,4vw,52px);align-items:baseline;">
+          <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#3E4046;">7 AM</p>
+          <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.15vw,16px);line-height:1.8;color:#565860;text-wrap:pretty;">The lamp turns itself off automatically in the morning.</p>
+        </div>
+
       </div>
+    </section>
+    <section style="margin:clamp(4px,1.5vw,16px) 0 clamp(56px,7vw,88px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.34s;">
+      <p style="margin:0 0 clamp(36px,5vw,60px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Ideation</p>
       <div style="display:flex;flex-direction:column;gap:clamp(50px,7vw,90px);">
 
         <div>
-          <div style="display:flex;align-items:baseline;gap:clamp(14px,1.7vw,22px);margin-bottom:clamp(22px,2.6vw,32px);">
-            <span style="flex:0 0 auto;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(18px,1.8vw,24px);line-height:1;color:#B0B2B9;">01</span>
-            <div>
-              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#3E4046;">Context</h3>
-              <p style="margin:9px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#797B83;max-width:56ch;text-wrap:pretty;">Where the lamp lives, set at the foot of the bed, with a bedside control to switch it off and a door sensor that registers when the room has been entered.</p>
-            </div>
-          </div>
+          <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">Set at the foot of the bed</h2>
+          <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Where the lamp lives, set at the foot of the bed, with a bedside control to switch it off and a door sensor that registers when the room has been entered.</p>
           <figure style="margin:0;">
             <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
               <img src="assets/andon-poster-context.png" alt="Bedroom context study" style="display:block;margin:0 auto;width:100%;height:auto;">
@@ -219,13 +397,8 @@
         </div>
 
         <div>
-          <div style="display:flex;align-items:baseline;gap:clamp(14px,1.7vw,22px);margin-bottom:clamp(22px,2.6vw,32px);">
-            <span style="flex:0 0 auto;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(18px,1.8vw,24px);line-height:1;color:#B0B2B9;">02</span>
-            <div>
-              <h3 style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#3E4046;">Form Development</h3>
-              <p style="margin:9px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#797B83;max-width:56ch;text-wrap:pretty;">From two opening silhouettes (a faceted octagonal lantern and a stacked volume) through desk and floor refinements and a fabric variation, to the resolved tiered form and the drawer that lifts to release scent.</p>
-            </div>
-          </div>
+          <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">From lantern to tiered form</h2>
+          <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">My grandparents are from China, so I looked to Chinese lanterns for the form, hoping to make the lamp feel calming and familiar to them. From two opening silhouettes (a faceted octagonal lantern and a stacked volume) through desk and floor refinements and a fabric variation, to the resolved tiered form and the drawer that lifts to release scent.</p>
           <figure style="margin:0;">
             <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
               <img src="assets/andon-poster-forms.png" alt="Form development — six studies" style="display:block;margin:0 auto;width:100%;height:auto;">
@@ -238,10 +411,7 @@
 
     <!-- MODELING -->
     <section style="margin:0 0 clamp(56px,7vw,88px);">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:clamp(26px,3.5vw,40px);">
-        <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Modeling</span>
-        <span style="flex:1;height:1px;background:#DCDDE2;"></span>
-      </div>
+      <p style="margin:0 0 clamp(26px,3.5vw,40px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Modeling</p>
       <p style="margin:0 0 clamp(30px,4vw,48px);font-size:clamp(13px,1.05vw,15px);line-height:1.65;color:#797B83;max-width:56ch;text-wrap:pretty;">The lantern was built in Rhino, then taken into Blender for lighting, rendering, and animation.</p>
 
       <figure style="margin:0 0 clamp(20px,2.6vw,30px);">
@@ -268,10 +438,7 @@
     </section>
 
     <!-- VIDEO + RENDERS -->
-    <div style="display:flex;align-items:center;gap:16px;margin:0 0 clamp(28px,3.5vw,40px);">
-      <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Final Renders &amp; Film</span>
-      <span style="flex:1;height:1px;background:#DCDDE2;"></span>
-    </div>
+    <p style="margin:0 0 clamp(28px,3.5vw,40px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Final Renders &amp; Film</p>
     <div style="display:flex;flex-direction:column;gap:clamp(12px,1.6vw,18px);">
       <figure style="margin:0;">
         <div onClick="{{ onPlateClick }}" style="background:#0E0C0A;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.92;">
@@ -293,34 +460,55 @@
         </figure>
       </div>
     </div>
+    <!-- REFLECTION -->
+    <div style="margin:clamp(56px,7vw,88px) 0 0;">
+      <p style="margin:0 0 clamp(16px,2vw,22px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Reflection</p>
+      <p style="margin:0;max-width:60ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.85;color:#565860;text-wrap:pretty;">Andon resolved into a single calm object that answers all four needs at once — soft light, scent, sound, and hands-free control. If I carried it further, I’d prototype the door-sensor dimming in real hardware and test the scent drawer with the people it’s actually for.</p>
+    </div>
   </main>
   </sc-if>
 
   <!-- ============================ DRIFT (P2) ============================ -->
   <sc-if value="{{ isDrift }}" hint-placeholder-val="{{ false }}">
   <main style="max-width:880px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#565860;">
-    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(36px,5vw,60px);" style-hover="color:#1B1B1A;">← Back</button>
+    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(28px,4vw,44px);" style-hover="color:#1B1B1A;">← Back</button>
+
+    <figure style="margin:0 0 clamp(30px,4vw,48px);overflow:hidden;background:#D8D6CE;aspect-ratio:16/8;animation:menuItemIn .9s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <img src="assets/drift-morning.png" alt="Drift interior by day — tatami lounge open to a forest" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 56%;">
+    </figure>
 
     <h1 style="margin:0;font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.06s;color:#3E4046;">Drift</h1>
     <p style="margin:14px 0 0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.13s;">Self-Driving Retreat · 2026</p>
 
-    <figure onClick="{{ onPlateClick }}" style="margin:clamp(28px,4vw,44px) 0 0;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;animation:menuItemIn .9s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.18s;" style-hover="opacity:0.94;">
-      <img src="assets/drift-cutaway.png" alt="Drift cutaway — full cabin layout from galley to bed" style="display:block;width:100%;height:auto;">
-    </figure>
+    <!-- QUICK FACTS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:clamp(16px,3vw,40px);margin:clamp(30px,3.6vw,42px) 0 0;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.16s;">
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Type</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Self-initiated</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Year</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">2026</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Tools</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Rhino · Blender</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Role</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Solo</p></div>
+    </div>
+
+    <!-- PROBLEM -->
+    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;"><span style="display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;margin-bottom:16px;">The Problem</span>When a vehicle drives itself, the dashboard disappears, and the interior is free to stop being a “car.” So what should it become?</p>
 
     <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">Drift is a self-driving RV interior for one or two travelers. It's a small, lived-in retreat built to let technology fade into the background, encouraging integration with nature. In a sense, it's the perfect homebody getaway!</p>
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">Self-driving technology allows the vehicle to drive itself, opening up travel to those who can't or no longer drive. This is perfect for solo wanderers and elderly couples who still want the freedom of the open road without being behind the wheel. It's a direct nod to autonomy and independence.&nbsp;</p>
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">Once the vehicle drives itself, the cabin is freed from the dashboard. The bed sits against a wide picture window, so the landscape becomes the focus; a wabi-sabi material palette of warm wood, paper, tatami, and soft textiles keeps the space feeling honest and lived-in rather than showroom-luxurious.</p>
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">The interior draws inspiration from Japandi spaces (the meeting of Japanese warmth and Scandinavian restraint) for their quiet, grounded calm.</p>
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,18px);line-height:1.85;color:#565860;text-wrap:pretty;">The large windows are inspired by Japanese trains; while driving past scenic routes, travelers can drink tea or play board games and gaze out at the passing scene.</p>
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Drift is a self-driving RV interior for one or two travelers. It's a compact, lived-in retreat built to let technology fade into the background, encouraging integration with nature.</p>
+      <sc-if value="{{ driftMore }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Self-driving technology allows the vehicle to drive itself, opening up travel to those who can't or no longer drive. This is perfect for solo wanderers and elderly couples who still want the freedom of the open road without being behind the wheel. It's a direct nod to autonomy and independence.&nbsp;</p>
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Once the vehicle drives itself, the cabin is freed from the dashboard. The bed sits against a wide picture window, opening the space to the landscape. The interior uses a wabi-sabi material palette of warm wood, paper, tatami, and soft textiles, keeping the space feeling honest and lived-in rather than showroom-luxurious.</p>
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">The interior draws inspiration from Japandi spaces for their feelings of quiet, grounded calm.</p>
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">The large windows are inspired by Japanese trains; while driving past scenic routes, travelers can drink tea or play board games and gaze out at the passing scene.</p>
+      </sc-if>
+      <button onClick="{{ toggleDriftMore }}" style="align-self:flex-start;margin-top:4px;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#9EA0A8;display:inline-flex;align-items:center;gap:7px;transition:color .2s ease;" style-hover="color:#1B1B1A;">{{ driftMoreLabel }}</button>
     </div>
 
+    <figure onClick="{{ onPlateClick }}" style="margin:0 0 clamp(40px,5vw,64px);overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.94;">
+      <img src="assets/drift-cutaway.png" alt="Drift cutaway — full cabin layout from galley to bed" style="display:block;width:100%;height:auto;">
+      <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">Cutaway: the full plan, from the galley and storage wall through to the elevated sleeping platform.</figcaption>
+    </figure>
+
     <!-- MOOD / CMF -->
-    <div style="display:flex;align-items:center;gap:16px;margin:0 0 clamp(20px,2.6vw,28px);">
-      <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Mood &amp; CMF</span>
-      <span style="flex:1;height:1px;background:#DCDDE2;"></span>
-    </div>
+    <p style="margin:0 0 clamp(20px,2.6vw,28px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Mood &amp; CMF</p>
     <p style="margin:0 0 clamp(22px,3vw,30px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">A color, material &amp; finish study. Lots of warm woods, paper and tatami greens, soft indigo textiles and gingham, with brushed gold and nostalgic pops. The palette anchors the wabi-sabi, lived-in feeling the whole interior is built around. The vibe is playful, nostalgic to childhood summers and late night video games.</p>
     <figure style="margin:0 0 clamp(56px,7vw,88px);">
       <div onClick="{{ onPlateClick }}" style="background:#EAEBEE;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.92;">
@@ -330,16 +518,13 @@
     </figure>
 
     <!-- PROCESS -->
-    <div style="display:flex;align-items:center;gap:16px;margin:0 0 clamp(26px,3.5vw,40px);">
-      <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Process</span>
-      <span style="flex:1;height:1px;background:#DCDDE2;"></span>
-    </div>
+    <p style="margin:0 0 clamp(26px,3.5vw,40px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Process</p>
 
     <!-- 01 Planning -->
     <div style="margin-bottom:clamp(48px,6vw,72px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">01 · Concept &amp; Planning</p>
+      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Concept &amp; Planning</p>
       <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">A getaway for two</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Early notes set the intent: a Japandi-style retreat for elders or couples, where self-driving makes long-distance travel safe and independent. No dashboard, no "car features"; instead a tea space for scenic, train-like rides, and a small layout that encourages connection with yourself and your companion.</p>
+      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Early notes of my intent: a Japandi-style retreat for elders or couples, where self-driving makes long-distance travel safe and independent. No dashboard, no "car features". Instead, a tea space for scenic, train-like rides. The small layout encourages connection with yourself and your companion.</p>
       <figure style="margin:0;">
         <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
           <img src="assets/drift-sketch-1.png" alt="Planning notes — concept brief for the Drift van" style="display:block;width:100%;height:auto;">
@@ -350,9 +535,9 @@
 
     <!-- 02 Layout explorations (scrapped) -->
     <div style="margin-bottom:clamp(48px,6vw,72px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">02 · Layout Explorations</p>
+      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Layout Explorations</p>
       <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">Scrapped: too "car-like"</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The first layouts leaned on familiar car logic: rotatable seats, a slide-along TV, a deployable ramp. They worked, but kept the space feeling like a vehicle. I scrapped them: if the car drives itself, it shouldn't need "car features" at all. That freed the floor plan to become a room first.</p>
+      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The first layout I tried relied on car logic: rotatable seats, a slide-along TV, a deployable ramp. They worked, but kept the space feeling like a vehicle. I scrapped them to make proper use of the freed space —if the car drives itself, it shouldn't need "car features" at all. </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(16px,2.4vw,28px);">
         <figure style="margin:0;">
           <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
@@ -371,9 +556,9 @@
 
     <!-- 03 Final concept -->
     <div style="margin-bottom:clamp(48px,6vw,72px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">03 · Final Concept</p>
+      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Final Concept</p>
       <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">A room, not a vehicle</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The resolved plan reads like a small home: kitchen and bath at one end, a living/tea space in the middle, and a bed nook at the far end. Large shoji-screen-like windows (inspired by Japanese bullet trains) wrap the bed nook so the landscape becomes the view from bed.</p>
+      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The resolved plan reads like a small home: kitchen and bath at one end, a living/tea space in the middle, and a quiet bed nook separated at the far end. Large shoji-screen-like windows (inspired by Japanese bullet trains) wrap around the bed nook, making the landscape the view from bed. Shallow accessible stairs are deployed for the elderly, which can also be replaced with a ramp.</p>
       <figure style="margin:0;">
         <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
           <img src="assets/drift-sketch-4.png" alt="Final concept sketch — floor plan, bed nook, shoji windows" style="display:block;width:100%;height:auto;">
@@ -384,15 +569,15 @@
 
     <!-- 04 Modeling -->
     <div style="margin-bottom:clamp(8px,1vw,12px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">04 · Modeling in Rhino</p>
+      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Modeling in Rhino</p>
       <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">Building it out</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Modeling the interior in Rhino, in chronological order. The bed was later moved to the very end of the cabin, turning it into the best "relaxation nook," wrapped on three sides by glass.</p>
+      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Modeling the interior in Rhino, in chronological order. After many iterations, I later moved the bed to the very end of the cabin. It was very important to me to find the best "relaxation nook," wrapped on three sides by glass, perfect for bird watching.</p>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,22px);">
         <figure style="margin:0;">
           <div onClick="{{ onPlateClick }}" style="background:#2B2C2E;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
             <img src="assets/drift-rhino-1.png" alt="Rhino model — early massing" style="display:block;width:100%;height:auto;">
           </div>
-          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Early massing and viewport setup.</figcaption>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Early massing and viewport setup with original ramp and car-like interior</figcaption>
         </figure>
         <figure style="margin:0;">
           <div onClick="{{ onPlateClick }}" style="background:#2B2C2E;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
@@ -404,22 +589,19 @@
           <div onClick="{{ onPlateClick }}" style="background:#2B2C2E;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
             <img src="assets/drift-rhino-3.png" alt="Rhino model — shell and window" style="display:block;width:100%;height:auto;">
           </div>
-          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Shaping the exterior shell and bed-nook window.</figcaption>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Shaping the exterior shell, bed-nook window, and skylight for night views.</figcaption>
         </figure>
         <figure style="margin:0;">
           <div onClick="{{ onPlateClick }}" style="background:#2B2C2E;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
             <img src="assets/drift-rhino-4.png" alt="Rhino model — bed nook at the cabin end" style="display:block;width:100%;height:auto;">
           </div>
-          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Bed relocated to the cabin end: the relaxation nook.</figcaption>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Bed relocated to the cabin end: the perfect relaxation nook to cozy up!</figcaption>
         </figure>
       </div>
     </div>
 
     <!-- MORE RENDERS (bottom) -->
-    <div style="display:flex;align-items:center;gap:16px;margin:clamp(56px,7vw,88px) 0 clamp(28px,3.5vw,40px);">
-      <span style="flex:0 0 auto;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">FINAL RENDERS IN BLENDER!</span>
-      <span style="flex:1;height:1px;background:#DCDDE2;"></span>
-    </div>
+    <p style="margin:clamp(56px,7vw,88px) 0 clamp(28px,3.5vw,40px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">FINAL RENDERS IN BLENDER!</p>
     <div style="display:flex;flex-direction:column;gap:clamp(16px,2.4vw,30px);">
       <figure style="margin:0;">
         <div onClick="{{ onPlateClick }}" style="background:#0E0C0A;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
@@ -437,8 +619,19 @@
         <div onClick="{{ onPlateClick }}" style="background:#0E0C0A;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
           <img src="assets/drift-bedview.png" alt="Drift — view of the living area from the bed" style="display:block;width:100%;height:auto;">
         </div>
-        <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">From the bed, looking out across the living area to the galley and the forest beyond. Calming!</figcaption>
+        <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">From the bed, looking out across the living area to the galley and the forest beyond. </figcaption>
       </figure>
+      <figure style="margin:0;">
+        <div onClick="{{ onPlateClick }}" style="background:#0E0C0A;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
+          <img src="assets/drift-kitchen.png" alt="Drift galley — compact kitchen with a forest window over the sink" style="display:block;width:100%;height:auto;">
+        </div>
+        <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">Galley: a compact kitchen with a forest window over the sink. Nothing better than instant ramen on a trip.</figcaption>
+      </figure>
+    </div>
+    <!-- REFLECTION -->
+    <div style="margin:clamp(56px,7vw,88px) 0 0;">
+      <p style="margin:0 0 clamp(16px,2vw,22px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Reflection</p>
+      <p style="margin:0;max-width:60ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.85;color:#565860;text-wrap:pretty;">Drift became a room rather than a vehicle — a quiet, lived-in retreat that opens to the landscape instead of the road. If I took it further, I’d pressure-test the layout at full scale and detail exactly how the bed, stairs, and storage fold and move.</p>
     </div>
   </main>
   </sc-if>
@@ -488,6 +681,20 @@
         <h1 style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(14px,1.3vw,17px);line-height:1.4;letter-spacing:0.34em;text-transform:uppercase;color:#3E3B36;">Olivia Tao</h1>
         <p style="margin:clamp(20px,2.6vw,28px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1vw,15px);line-height:2.0;letter-spacing:0.01em;color:#8A867E;max-width:54ch;text-wrap:pretty;">I'm currently entering my second year of Industrial Design at Pratt Institute in Brooklyn, New York. I'm interested in how product design can support the way we live and feel — and in the intersection of health, beauty, and wellness.</p>
         <p style="margin:18px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1vw,15px);line-height:2.0;letter-spacing:0.01em;color:#8A867E;max-width:54ch;text-wrap:pretty;">As a kid I always gravitated toward hands-on activities — disassembling old jewelry, rebuilding lego sets, and fixing computers. Those habits pushed me toward exploring how things are made, and toward collaborating across disciplines to push a design further.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(14px,2vw,26px);margin-top:clamp(26px,3.4vw,38px);">
+          <a href="mailto:[email protected]" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.02em;color:#8A867E;transition:color .2s ease;" style-hover="color:#1B1B1A;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #DCDDE2;border-radius:999px;flex:0 0 auto;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+            </span>[email protected]</a>
+          <a href="https://www.linkedin.com/in/olivia-tao-a578423a0/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.02em;color:#8A867E;transition:color .2s ease;" style-hover="color:#1B1B1A;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #DCDDE2;border-radius:999px;flex:0 0 auto;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>
+            </span>LinkedIn</a>
+          <a href="https://www.instagram.com/olivia.tao_/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.02em;color:#8A867E;transition:color .2s ease;" style-hover="color:#1B1B1A;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #DCDDE2;border-radius:999px;flex:0 0 auto;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+            </span>@olivia.tao_</a>
+        </div>
       </div>
     </section>
 
@@ -569,16 +776,14 @@
   <!-- ============================ RESUME ============================ -->
   <sc-if value="{{ isResume }}" hint-placeholder-val="{{ true }}">
   <main style="max-width:940px;margin:0 auto;padding:clamp(40px,6vw,80px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#3A3C42;">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:clamp(18px,2.5vw,26px);animation:menuItemIn .7s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
-      <p style="margin:0;font-size:12px;letter-spacing:0.04em;color:#797B83;display:flex;align-items:center;gap:8px;"><span style="width:7px;height:7px;border-radius:50%;background:#9EA0A8;"></span>Click any text to edit. Changes save automatically.</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:14px;margin-bottom:clamp(18px,2.5vw,26px);animation:menuItemIn .7s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
       <div style="display:flex;align-items:center;gap:10px;">
-        <button onClick="{{ resetResume }}" style="background:transparent;border:none;cursor:pointer;font-family:inherit;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;color:#9EA0A8;padding:6px 13px;border-radius:999px;transition:background .25s ease,color .25s ease;" style-hover="background:#E9EAEC;color:#1B1B1A;">Reset</button>
-        <a href="#" download="" style="text-decoration:none;font-family:inherit;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#FFFFFF;background:#33353B;padding:8px 16px;border-radius:999px;transition:opacity .2s ease;white-space:nowrap;" style-hover="opacity:0.82;">Download PDF</a>
+        <a href="assets/Olivia-Tao-Resume.pdf" download="Olivia Tao Resume.pdf" target="_blank" rel="noopener" style="text-decoration:none;font-family:inherit;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#FFFFFF;background:#33353B;padding:8px 16px;border-radius:999px;transition:opacity .2s ease;white-space:nowrap;" style-hover="opacity:0.82;">Download PDF</a>
       </div>
     </div>
 
     <article style="border:1px solid transparent;background:#FCFCFE;padding:clamp(26px,3.6vw,52px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.14s;">
-      <div data-resume-sheet="" ref="{{ resumeRef }}" contenteditable="true" spellcheck="false"></div>
+      <div data-resume-sheet="" ref="{{ resumeRef }}"></div>
     </article>
   </main>
   </sc-if>
@@ -593,7 +798,7 @@
       <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Sketches · Studies</p>
       <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
       <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Charcoal, Neocolor, and acrylic studies.</p>
-      <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+      <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
@@ -614,7 +819,7 @@
             </div>
             <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
             <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
-              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>{{ a.award }}</p>
+              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>{{ a.award }}</p>
             </sc-if>
           </div>
         </figure>
@@ -631,7 +836,7 @@
       <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">3D Sculptures</p>
       <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
       <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Sculptural studies in wood, where structure, balance, and material meet. The same instincts that drive my product work, made physical.</p>
-      <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+      <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
@@ -647,7 +852,7 @@
             </div>
             <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
             <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
-              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>{{ a.award }}</p>
+              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>{{ a.award }}</p>
             </sc-if>
           </div>
         </figure>
@@ -667,16 +872,17 @@
   <sc-if value="{{ isArt }}" hint-placeholder-val="{{ false }}">
   <main style="max-width:1320px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(24px,6vw,80px) clamp(80px,11vw,150px);color:#6E6A63;">
     <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(28px,4vw,44px);" style-hover="color:#1B1B1A;">← Back to Projects</button>
       <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Fine Art · Foundation</p>
       <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
-      <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Before I pursued industrial design I spent many years of studio practice in painting and drawing. These efforts are recognized through my fine arts portfolio, which has shaped the way I see form, light, and material. The pieces below act as the foundation for my design eye.</p>
+      <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1.05vw,15px);line-height:1.8;color:#7C7872;max-width:60ch;">Before I pursued industrial design I spent many years of studio practice in painting and drawing. These efforts are recognized through my fine arts portfolio, which has shaped the way I see form, light, and material. The pieces below act as the foundation for my design eye.</p>
       <div style="margin:clamp(26px,3vw,34px) 0 0;display:flex;flex-direction:column;gap:11px;">
-        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
-        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Scholastic Regional Gold Key · Portfolio</p>
-        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Scholastic Regional Silver Key · Portfolio</p>
-        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>Federal Duck Stamp Winner</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Scholastic Regional Gold Key · Portfolio</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Scholastic Regional Silver Key · Portfolio</p>
+        <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Federal Duck Stamp Winner</p>
       </div>
-      <p style="margin:clamp(20px,2.4vw,28px) 0 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11px;letter-spacing:0.04em;color:#A8A39A;"><span>Use the ↑ ↓ on each piece to reorder; your arrangement is saved. Click any image to enlarge.</span><button onClick="{{ resetArtOrder }}" style="background:none;border:1px solid #DCD7CC;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6E6A63;padding:7px 14px;transition:background .2s ease,color .2s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">Reset order</button></p>
+      <p style="margin:clamp(20px,2.4vw,28px) 0 0;font-size:11px;letter-spacing:0.04em;color:#A8A39A;">Click any image to enlarge.</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:clamp(44px,5vw,76px) clamp(28px,3vw,48px);">
@@ -697,12 +903,8 @@
             </div>
             <p style="margin:6px 0 0;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;">{{ a.medium }}</p>
             <sc-if value="{{ a.hasAward }}" hint-placeholder-val="{{ true }}">
-              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#EAB308;flex:0 0 auto;"></span>{{ a.award }}</p>
+              <p style="margin:11px 0 0;display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#7C7872;"><span style="width:6px;height:6px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>{{ a.award }}</p>
             </sc-if>
-            <div style="margin-top:14px;display:flex;gap:7px;">
-              <button onClick="{{ a.moveUp }}" aria-label="Move earlier" style="width:30px;height:30px;border:1px solid #DCD7CC;background:#FFFFFF;border-radius:50%;cursor:pointer;color:#6E6A63;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s ease,color .2s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">↑</button>
-              <button onClick="{{ a.moveDown }}" aria-label="Move later" style="width:30px;height:30px;border:1px solid #DCD7CC;background:#FFFFFF;border-radius:50%;cursor:pointer;color:#6E6A63;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s ease,color .2s ease;" style-hover="background:#1B1B1A;color:#FFFFFF;">↓</button>
-            </div>
           </div>
         </figure>
       </sc-for>
@@ -723,9 +925,15 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <p style="margin:0 0 4px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#A7A9B0;">Contact</p>
-        <a href="mailto:otao@pratt.edu" style="text-decoration:none;font-size:12px;color:#9EA0A8;" style-hover="color:#1B1B1A;">otao@pratt.edu</a>
-        <a href="https://instagram.com/olivia.tao_" target="_blank" rel="noopener" style="text-decoration:none;font-size:12px;color:#9EA0A8;" style-hover="color:#1B1B1A;">@olivia.tao_</a>
-        <a href="#" target="_blank" rel="noopener" style="text-decoration:none;font-size:12px;color:#9EA0A8;" style-hover="color:#1B1B1A;">LinkedIn</a>
+        <a href="mailto:[email protected]" style="text-decoration:none;font-size:12px;color:#9EA0A8;" style-hover="color:#1B1B1A;">[email protected]</a>
+        <a href="https://www.instagram.com/olivia.tao_/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;font-size:12px;color:#9EA0A8;" style-hover="color:#1B1B1A;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #DCDDE2;border-radius:999px;flex:0 0 auto;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+          </span>@olivia.tao_</a>
+        <a href="https://www.linkedin.com/in/olivia-tao-a578423a0/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;font-size:12px;color:#9EA0A8;" style-hover="color:#1B1B1A;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #DCDDE2;border-radius:999px;flex:0 0 auto;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>
+          </span>Olivia Tao</a>
       </div>
     </div>
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(32px,4vw,48px);">
@@ -742,7 +950,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { route: 'work', project: 'p1', menuOpen: false, menuClosing: false, transitioning: false, typed: 'care', showAll: false };
+  state = { route: 'work', project: 'p1', menuOpen: false, menuClosing: false, transitioning: false, typed: 'care', showAll: false, workCat: 'all', worksView: 'projects', andonMore: false, driftMore: false };
   RESUME_KEY = 'oliviaResumeHTML_v6';
 
   componentDidMount() {
@@ -894,12 +1102,12 @@ class Component extends DCLogic {
     const videoRef = (el) => { if (el) { el.controls = true; el.loop = true; } };
 
     const education = [
-      { place: 'Pratt Institute', detail: 'BID, Industrial Design — Brooklyn, NY', when: '2025 — 2029', logo: 'Pratt' },
+      { place: 'Pratt Institute', detail: 'BID, Industrial Design — Brooklyn, NY', when: '2025 — present', logo: 'Pratt' },
       { place: 'Pioneer High School', detail: 'Ann Arbor, MI', when: '2021 — 2025', logo: 'PHS' },
     ];
     const experience = [
-      { place: 'Art Teacher\u2019s Assistant', detail: 'Led hands-on studio sessions for younger students in painting, clay, and ink.', when: '2024 — 2025' },
-      { place: 'English Tutor', detail: 'One-on-one and small-group tutoring across reading, writing, and conversation.', when: '2024 — 2025' },
+      { place: 'Art Teacher\u2019s Assistant', detail: 'Led hands-on studio sessions for younger students in painting, clay, and ink.', when: '2024 — 2026' },
+      { place: 'English Tutor', detail: 'One-on-one and small-group tutoring across reading, writing, and conversation.', when: '2024 — 2026' },
       { place: 'Online English Tutor', detail: 'Built custom lesson materials and tracked progress for remote students.', when: '2023 — 2024' },
     ];
     const awards = [
@@ -908,9 +1116,9 @@ class Component extends DCLogic {
       { place: "President's List", detail: 'Pratt Institute', when: 'Fall 2025', logo: 'Pratt', img: 'assets/award-pratt.jpg' },
       { place: 'Federal Duck Stamp', detail: 'National recognition · ages 12 & 14', when: '2021 / 2023', logo: 'USFWS', img: 'assets/award-duckstamp.png' },
     ];
-    const software = ['Rhino 3D', 'SolidWorks', 'Keyshot', 'Blender', 'Figma', 'PowerPoint / Keynote'];
+    const software = ['Rhino 3D', 'SolidWorks', 'Keyshot', 'Blender', 'Figma', 'Photoshop', 'After Effects', 'Adobe Express', 'Clip Studio Paint', 'PowerPoint / Keynote'];
     const activities = ['NCAA Division III Varsity Tennis — Pratt'];
-    const skills = ['Sketching & ideation', 'CAD — Rhino, Fusion 360', 'Foam & clay modeling', 'Figma & prototyping', 'CNC & laser cutting', 'Cross-cultural communication', 'Teaching & mentorship'];
+    const skills = ['Sketching & ideation', 'CAD — Rhino', 'SolidWorks', 'Foam & clay modeling', 'Figma & prototyping', 'Digital art & motion', 'Cross-cultural communication', 'Teaching & mentorship'];
     const languages = ['English — fluent', 'Chinese — fluent'];
 
     const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -918,21 +1126,21 @@ class Component extends DCLogic {
     const skillsLI = skills.map(s => `<li style="font-size:13px;line-height:1.45;color:#7C7872;">${esc(s)}</li>`).join('');
     const langLI = languages.map(s => `<li style="font-size:13px;line-height:1.45;color:#7C7872;">${esc(s)}</li>`).join('');
     // NEW additive content only
-    const rSoftware = ['Rhino 3D', 'SolidWorks', 'Keyshot', 'Blender', 'Figma', 'PowerPoint / Keynote'];
+    const rSoftware = ['Rhino 3D', 'SolidWorks', 'Keyshot', 'Blender', 'Figma', 'Photoshop', 'After Effects', 'Adobe Express', 'Clip Studio Paint', 'PowerPoint / Keynote'];
     const rActivities = ['NCAA Division III Varsity Tennis — Pratt Institute', 'Youth small-group leader — church ministry', 'Praise team leader'];
     const rSummary = 'Second-year industrial design student interested in the intersection of health, wellness, and technology. Award-winning portfolio work paired with hands-on skills across sketching, CAD, and physical modeling. Brings teaching experience, cross-cultural communication, and the discipline of a collegiate athlete to collaborative teams.';
     const rExperience = [
-      { place: 'Art Teacher’s Assistant', when: '2024 — 2025', detail: 'Led hands-on studio sessions for younger students in painting, clay, and ink. Overlooked summer camps and helped organize curricula and materials for the program.' },
-      { place: 'English Tutor', when: '2024 — 2025', detail: 'One-on-one K-12 tutoring across reading, writing, and conversation.' },
+      { place: 'Art Teacher’s Assistant', when: '2024 — 2026', detail: 'Led hands-on studio sessions for younger students in painting, clay, and ink. Overlooked summer camps and helped organize curricula and materials for the program.' },
+      { place: 'English Tutor', when: '2024 — 2026', detail: 'One-on-one K-12 tutoring across reading, writing, and conversation.' },
       { place: 'Online English Tutor', when: '2023 — 2024', detail: 'Built custom lesson materials and tracked progress for remote students.' },
     ];
     const rEducation = [
-      { place: 'Pratt Institute', when: '2025 — 2029', detail: 'BID, Industrial Design — Brooklyn, NY' },
+      { place: 'Pratt Institute', when: '2025 — present', detail: 'BID, Industrial Design — Brooklyn, NY' },
       { place: 'Pioneer High School', when: '2021 — 2025', detail: 'Ann Arbor, MI' },
     ];
     const rAwards = [
       { place: 'Scholastic Art Awards', when: '2024', detail: 'Regional recognition' },
-      { place: 'Foundation Year Award', when: '2025', detail: 'Pratt Institute' },
+      { place: 'Federal Duck Stamp', when: '2021 / 2023', detail: 'National recognition · ages 12 & 14' },
       { place: 'Pratt FoundationFolio Winner', when: '2026', detail: 'Selected for the top foundation-year portfolio across the incoming class.' },
       { place: "President's List — Pratt Institute", when: 'Fall 2025', detail: 'Highest tier of academic honors for the semester.' },
     ];
@@ -946,7 +1154,7 @@ class Component extends DCLogic {
         </div>
         <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;font-size:13px;color:#565860;">
           <span>(734) 546-1871</span>
-          <span>otao@pratt.edu</span>
+          <span>[email protected]</span>
           <span>@olivia.tao_</span>
         </div>
       </header>
@@ -976,7 +1184,7 @@ class Component extends DCLogic {
           </section>
           <section>
             <h2 style="margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid transparent;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#4E5058;">About</h2>
-            <p style="margin:0;font-size:14px;line-height:1.6;color:#565860;">I'm currently in my second year of Industrial Design at Pratt Institute in Brooklyn, New York. I'm interested in how product design can seamlessly support the way we live and feel — and in the intersection of health, beauty, and wellness.</p>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:#565860;">I'm currently entering my second year of Industrial Design at Pratt Institute in Brooklyn, New York. I'm interested in how product design can seamlessly support the way we live and feel, as well as in the intersection of health, beauty, and wellness.</p>
             <p style="margin:10px 0 0;font-size:14px;line-height:1.6;color:#565860;">As a kid, I always gravitated toward hands-on activities — disassembling old jewelry, rebuilding LEGO sets, and building furniture. Those habits pushed me to explore how things are made and to collaborate across disciplines to advance a design.</p>
           </section>
           <section>
@@ -998,10 +1206,7 @@ class Component extends DCLogic {
       if (!el || el.dataset.bound) return;
       el.dataset.bound = '1';
       this._resumeEl = el;
-      let saved = null;
-      try { saved = localStorage.getItem(this.RESUME_KEY); } catch (e) {}
-      el.innerHTML = (saved != null && saved !== '') ? saved : resumeDefaultHTML;
-      el.addEventListener('input', () => { try { localStorage.setItem(this.RESUME_KEY, el.innerHTML); } catch (e) {} });
+      el.innerHTML = resumeDefaultHTML;
     };
     const resetResume = () => {
       try { localStorage.removeItem(this.RESUME_KEY); } catch (e) {}
@@ -1070,28 +1275,58 @@ class Component extends DCLogic {
     const sculpt3dworks = sculpt3dRaw.map(a => ({ ...a, hasImg: !!a.img, noImg: !a.img, hasAward: !!a.award, thumb: thumbOf(a.img), frameStyle: frameFor(a), imgStyle: imgFitFor(a), onZoom: () => this.openLightbox(a.img), imgNode: a.img ? React.createElement('img', { src: thumbOf(a.img), alt: a.title || '', style: imgFitFor(a) }) : null }));
     const sketchworks = sketchRaw.map(a => ({ ...a, hasImg: !!a.img, noImg: !a.img, hasAward: !!a.award, thumb: thumbOf(a.img), frameStyle: { ...artFrameBase, aspectRatio: a.aspect, cursor: a.img ? 'zoom-in' : 'default' }, imgStyle: { width: '100%', height: '100%', objectFit: 'contain', display: 'block' }, onZoom: () => this.openLightbox(a.img), imgNode: a.img ? React.createElement('img', { src: thumbOf(a.img), alt: a.title || '', style: { width: '100%', height: '100%', objectFit: 'contain', display: 'block' } }) : null }));
 
+    const workCat = this.state.workCat || 'all';
+    const worksData = [
+      { key: 'drift', title: 'Drift', sub: 'Self-Driving Retreat', year: '2026', img: 'assets/drift-thumb.png', alt: 'DRIFT — Self-Driving RV Concept', cat: 'car', onOpen: open('p2') },
+      { key: 'andon', title: 'Andon', sub: 'Elderly Wellness', year: '2026', img: 'assets/andon-thumb.png', alt: 'Andon — Elderly Wellness Lamp', cat: 'health', onOpen: open('p1') },
+    ].map(w => ({ ...w, imgNode: React.createElement('img', { src: w.img, alt: w.alt, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' } }) }));
+    const worksList = worksData.filter(w => workCat === 'all' || w.cat === workCat);
+    const catActiveStyle = 'background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:13px;letter-spacing:0.02em;color:#63656C;font-weight:600;transition:color .2s ease;';
+    const catIdleStyle = 'background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:13px;letter-spacing:0.02em;color:#A7A9B0;font-weight:400;transition:color .2s ease;';
+    const workCats = [
+      { label: 'All', key: 'all' },
+      { label: 'Car', key: 'car' },
+      { label: 'Health', key: 'health' },
+    ].map(c => ({ label: c.label, key: c.key, style: ((route === 'works' && (this.state.worksView || 'projects') === 'projects' && workCat === c.key) ? catActiveStyle : catIdleStyle), onPick: () => { this.setState({ workCat: c.key, worksView: 'projects' }); if (this.state.route !== 'works') this.go('works'); } }));
+
+    const otherActive = 'background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:13px;letter-spacing:0.02em;color:#63656C;font-weight:600;transition:color .2s ease;';
+    const otherIdle = 'background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:13px;letter-spacing:0.02em;color:#A7A9B0;font-weight:400;transition:color .2s ease;';
+
     return {
+      otherArtStyle: ((this.state.worksView === 'art') ? otherActive : otherIdle),
+      otherSketchStyle: ((this.state.worksView === 'sketch') ? otherActive : otherIdle),
+      otherSculptStyle: ((this.state.worksView === 'sculpt') ? otherActive : otherIdle),
       route,
+      andonMore: this.state.andonMore, driftMore: this.state.driftMore,
+      toggleAndonMore: () => this.setState(s => ({ andonMore: !s.andonMore })),
+      toggleDriftMore: () => this.setState(s => ({ driftMore: !s.driftMore })),
+      andonMoreLabel: this.state.andonMore ? 'Read less' : 'Read more',
+      driftMoreLabel: this.state.driftMore ? 'Read less' : 'Read more',
       isWork: route === 'work', isWorks: route === 'works', isProject: route === 'project', isAbout: route === 'about',
+      worksList, workCats,
       isAndon: route === 'project' && this.state.project === 'p1',
       isDrift: route === 'project' && this.state.project === 'p2',
       isOtherProject: route === 'project' && this.state.project !== 'p1' && this.state.project !== 'p2',
       onPlateClick: (e) => { const img = e.currentTarget.querySelector('img'); if (img) this.openLightbox(img.getAttribute('src')); },
       isResume: route === 'resume', isContact: route === 'contact', isArt: route === 'art', isSketch: route === 'sketch', notContact: route !== 'contact',
-      navWork: () => this.go('work'), navWorks: () => this.go('work'), navAbout: () => this.go('about'), navArt: () => this.go('art'), navSketch: () => this.go('sketch'),
+      navWork: () => this.go('work'), navWorks: () => { this.setState({ worksView: 'projects' }); this.go('works'); }, navAbout: () => this.go('about'),
+      navArt: () => { this.setState({ worksView: 'art' }); if (this.state.route !== 'works') this.go('works'); },
+      navSketch: () => { this.setState({ worksView: 'sketch' }); if (this.state.route !== 'works') this.go('works'); },
+      navSculpt2: () => { this.setState({ worksView: 'sculpt' }); if (this.state.route !== 'works') this.go('works'); },
+      vwProjects: (this.state.worksView || 'projects') === 'projects', vwArt: this.state.worksView === 'art', vwSketch: this.state.worksView === 'sketch', vwSculpt: this.state.worksView === 'sculpt',
       navAndon: open('p1'),
       navDrift: open('p2'),
       heroEnter: (e) => { const v = e.currentTarget.querySelector('video'); if (v) { try { v.muted = true; v.loop = true; v.currentTime = 0; v.style.opacity = '1'; const r = v.play(); if (r && r.catch) r.catch(() => {}); } catch (err) {} } },
       heroLeave: (e) => { const v = e.currentTarget.querySelector('video'); if (v) { try { v.pause(); v.style.opacity = '0'; } catch (err) {} } },
       navResume: () => this.go('resume'), navContact: () => this.go('contact'),
       menuOpen, openMenu: () => this.openMenu(), closeMenu: () => this.closeMenu(), overlayStyle, transitioning: this.state.transitioning,
-      workLinkStyle: this.linkStyle(route === 'work' || route === 'project'),
+      workLinkStyle: this.linkStyle(route === 'works' || route === 'project'),
       aboutLinkStyle: this.linkStyle(route === 'about'),
       resumeLinkStyle: this.linkStyle(route === 'resume'),
       contactLinkStyle: this.linkStyle(route === 'contact'),
       artLinkStyle: this.linkStyle(route === 'art'),
       sketchLinkStyle: this.linkStyle(route === 'sketch'),
-      isSculpt: route === 'sculpt', sculptLinkStyle: this.linkStyle(route === 'sculpt'), navSculpt: () => this.go('sculpt'),
+      isSculpt: route === 'sculpt', sculptLinkStyle: this.linkStyle(route === 'sculpt'), navSculpt: () => { this.setState({ worksView: 'sculpt' }); if (this.state.route !== 'works') this.go('works'); },
       sculpt3dworks,
       lightboxOpen: !!this.state.lightbox, lightboxImg: this.state.lightbox ? (/\.mp4($|\?)/i.test(this.state.lightbox) ? React.createElement('video', { src: this.state.lightbox, controls: true, autoPlay: true, loop: true, playsInline: true, style: { maxWidth: '100%', maxHeight: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }, onClick: (e) => e.stopPropagation() }) : React.createElement('img', { src: this.state.lightbox, alt: '', style: { maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' } })) : null, closeLightbox: () => this.closeLightbox(),
       openFilm: () => this.openLightbox('assets/summer-project.mp4'),
