@@ -10,9 +10,6 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&amp;family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&amp;family=Rubik:wght@500;600;700;800&amp;family=Syne:wght@600;700;800&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
@@ -75,8 +72,8 @@
     <section style="max-width:1320px;margin:0 auto;padding:clamp(44px,6vw,92px) clamp(24px,6vw,80px) clamp(34px,4vw,56px);">
       <div style="display:grid;grid-template-columns:1.04fr 0.96fr;gap:clamp(32px,5vw,80px);align-items:center;">
         <div>
-          <p style="margin: 0 0 clamp(36px,4.5vw,56px); font-size: 11px; letter-spacing: 0.34em; line-height: 1.9; text-transform: uppercase; font-weight: 400; color: #9A9892; width: 445px">HI，你好! I'M OLIVIA, AN INDUSTRIAL DESIGN STUDENT BASED IN BROOKLYN, NEW YORK. SCROLL TO VIEW MY WORK!</p>
-          <p style="margin: 0; white-space: nowrap; font-size: clamp(27px,3.4vw,44px); font-family: Roboto; font-weight: 300; line-height: 1.2; letter-spacing: 0.02em; color: #9A9892">designing for <em style="font-style:normal;font-weight:400;color:#1B1B1A;white-space:nowrap;">{{ typed }}</em><span style="display:inline-block;width:2px;height:0.92em;margin-left:3px;background:#1B1B1A;vertical-align:-0.08em;animation:caret 1s steps(1,end) infinite;"></span></p>
+          <p style="margin: 0 0 clamp(36px,4.5vw,56px); font-size: 11px; letter-spacing: 0.34em; line-height: 1.9; text-transform: uppercase; font-weight: 400; color: #9A9892; width: 445px">HI! I'M OLIVIA, AN INDUSTRIAL DESIGN STUDENT BASED IN BROOKLYN, NEW YORK. SCROLL TO VIEW MY WORK!</p>
+          <p style="margin: 0; white-space: nowrap; font-size: clamp(27px,3.4vw,44px); font-family: 'Times New Roman', Times, serif; font-weight: 300; line-height: 1.2; letter-spacing: 0.02em; color: #9A9892">designing for <em style="font-style:normal;font-weight:400;color:#1B1B1A;white-space:nowrap;">{{ typed }}</em><span style="display:inline-block;width:2px;height:0.92em;margin-left:3px;background:#1B1B1A;vertical-align:-0.08em;animation:caret 1s steps(1,end) infinite;"></span></p>
         </div>
         
       </div>
@@ -87,6 +84,20 @@
       
 
       <div data-sr="" style="display:grid;grid-template-columns:repeat(3,1fr);column-gap:clamp(22px,3vw,52px);row-gap:clamp(40px,5vw,72px);">
+
+        <button onClick="{{ navIris }}" style="background:none;border:none;padding:0;margin:0;cursor:pointer;text-align:left;display:block;">
+          <figure style="position:relative;margin:0;aspect-ratio:8/9;overflow:hidden;background:#F1F1F2;">
+            <img src="assets/iris-thumb.png" alt="Iris — Smart Eyewear" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);" style-hover="transform:scale(1.14);">
+            <span style="position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:6px 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#5A5C63;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:#8A8D96;display:inline-block;"></span>Work in Progress</span>
+          </figure>
+          <div style="margin:clamp(15px,1.5vw,19px) 0 0;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3E3B36;">Iris</span>
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;font-size:12px;letter-spacing:0.1em;color:#9EA0A8;">2026</span>
+            </div>
+            <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#A7A9B0;">Smart Eyewear</p>
+          </div>
+        </button>
 
         <button onClick="{{ navDrift }}" style="background:none;border:none;padding:0;margin:0;cursor:pointer;text-align:left;display:block;">
           <figure style="position:relative;margin:0;aspect-ratio:8/9;overflow:hidden;background:#E9EAEC;">
@@ -141,6 +152,9 @@
           <button onClick="{{ w.onOpen }}" style="background:none;border:none;padding:0;margin:0;cursor:pointer;text-align:left;display:block;">
             <figure style="position:relative;margin:0;aspect-ratio:8/9;overflow:hidden;background:#E9EAEC;">
               <div style="position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);" style-hover="transform:scale(1.14);">{{ w.imgNode }}</div>
+              <sc-if value="{{ w.wip }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:6px 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#5A5C63;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:#8A8D96;display:inline-block;"></span>Work in Progress</span>
+              </sc-if>
             </figure>
             <div style="margin:clamp(15px,1.5vw,19px) 0 0;">
               <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;">
@@ -157,7 +171,7 @@
         <sc-if value="{{ vwArt }}" hint-placeholder-val="{{ false }}">
         <div style="max-width:780px;margin:0 0 clamp(40px,6vw,80px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
           <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Fine Art · Foundation</p>
-          <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
+          <h1 style="margin:0;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
           <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1.05vw,15px);line-height:1.8;color:#7C7872;max-width:60ch;">Before I pursued industrial design I spent many years of studio practice in painting and drawing. These efforts are recognized through my fine arts portfolio, which has shaped the way I see form, light, and material. The pieces below act as the foundation for my design eye.</p>
           <div style="margin:clamp(26px,3vw,34px) 0 0;display:flex;flex-direction:column;gap:11px;">
             <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
@@ -175,7 +189,7 @@
               </sc-if>
               <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
                 <div style="{{ a.frameStyle }}">
-                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+                  <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
                 </div>
               </sc-if>
               <div style="margin-top:clamp(16px,1.6vw,22px);">
@@ -199,7 +213,7 @@
         <sc-if value="{{ vwSketch }}" hint-placeholder-val="{{ false }}">
         <div style="max-width:780px;margin:0 0 clamp(40px,6vw,80px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
           <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Sketches · Studies</p>
-          <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
+          <h1 style="margin:0;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
           <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Charcoal, Neocolor, and acrylic studies.</p>
           <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
         </div>
@@ -211,7 +225,7 @@
               </sc-if>
               <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
                 <div style="{{ a.frameStyle }}">
-                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+                  <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
                 </div>
               </sc-if>
               <div style="margin-top:clamp(16px,1.6vw,22px);">
@@ -232,7 +246,7 @@
         <sc-if value="{{ vwSculpt }}" hint-placeholder-val="{{ false }}">
         <div style="max-width:780px;margin:0 0 clamp(40px,6vw,80px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
           <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">3D Sculptures</p>
-          <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
+          <h1 style="margin:0;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
           <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Sculptural studies in wood, where structure, balance, and material meet. The same instincts that drive my product work, made physical.</p>
           <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
         </div>
@@ -282,14 +296,11 @@
     </div>
 
     <!-- PROBLEM -->
-    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;"><span style="display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;margin-bottom:16px;">The Problem</span>My grandparents sleep badly — bright lamps keep them up, they “hate buttons,” and they’d rather not reach for pills. How might one quiet object help them wind down?</p>
+    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;"><span style="display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;margin-bottom:16px;">The Problem</span>My grandparents sleep badly — bright lamps keep them up, they “hate buttons,” and they’d rather not reach for pills. How might one quiet object help them wind down?</p>
 
     <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
       <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Andon is a bedside wellness lamp for older adults, bringing warm, dimmable light together with gentle scent and sound in one quiet object.</p>
-      <sc-if value="{{ andonMore }}" hint-placeholder-val="{{ false }}">
       <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">These pages trace the project from a sleep-habits interview with my grandparents, through ideation and modeling, to a final lit render. The film below shows the finished work.</p>
-      </sc-if>
-      <button onClick="{{ toggleAndonMore }}" style="align-self:flex-start;margin-top:4px;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#9EA0A8;display:inline-flex;align-items:center;gap:7px;transition:color .2s ease;" style-hover="color:#1B1B1A;">{{ andonMoreLabel }}</button>
     </div>
 
     <!-- RESEARCH -->
@@ -387,7 +398,7 @@
       <div style="display:flex;flex-direction:column;gap:clamp(50px,7vw,90px);">
 
         <div>
-          <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">Set at the foot of the bed</h2>
+          <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">Set at the foot of the bed</h2>
           <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Where the lamp lives, set at the foot of the bed, with a bedside control to switch it off and a door sensor that registers when the room has been entered.</p>
           <figure style="margin:0;">
             <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
@@ -397,7 +408,7 @@
         </div>
 
         <div>
-          <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">From lantern to tiered form</h2>
+          <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">From lantern to tiered form</h2>
           <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">My grandparents are from China, so I looked to Chinese lanterns for the form, hoping to make the lamp feel calming and familiar to them. From two opening silhouettes (a faceted octagonal lantern and a stacked volume) through desk and floor refinements and a fabric variation, to the resolved tiered form and the drawer that lifts to release scent.</p>
           <figure style="margin:0;">
             <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;display:flex;justify-content:center;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.86;">
@@ -489,17 +500,14 @@
     </div>
 
     <!-- PROBLEM -->
-    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;"><span style="display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;margin-bottom:16px;">The Problem</span>When a vehicle drives itself, the dashboard disappears, and the interior is free to stop being a “car.” So what should it become?</p>
+    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;"><span style="display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;margin-bottom:16px;">The Problem</span>When a vehicle drives itself, the dashboard disappears, and the interior is free to stop being a “car.” So what should it become?</p>
 
     <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
       <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Drift is a self-driving RV interior for one or two travelers. It's a compact, lived-in retreat built to let technology fade into the background, encouraging integration with nature.</p>
-      <sc-if value="{{ driftMore }}" hint-placeholder-val="{{ false }}">
-      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Self-driving technology allows the vehicle to drive itself, opening up travel to those who can't or no longer drive. This is perfect for solo wanderers and elderly couples who still want the freedom of the open road without being behind the wheel. It's a direct nod to autonomy and independence.&nbsp;</p>
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Self-driving technology allows the vehicle to drive itself, opening up travel to those who can't or no longer drive. This is perfect for solo wanderers and elderly couples who still want the freedom of the open road without being behind the wheel. It's a direct nod to autonomy and independence.</p>
       <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Once the vehicle drives itself, the cabin is freed from the dashboard. The bed sits against a wide picture window, opening the space to the landscape. The interior uses a wabi-sabi material palette of warm wood, paper, tatami, and soft textiles, keeping the space feeling honest and lived-in rather than showroom-luxurious.</p>
       <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">The interior draws inspiration from Japandi spaces for their feelings of quiet, grounded calm.</p>
       <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">The large windows are inspired by Japanese trains; while driving past scenic routes, travelers can drink tea or play board games and gaze out at the passing scene.</p>
-      </sc-if>
-      <button onClick="{{ toggleDriftMore }}" style="align-self:flex-start;margin-top:4px;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#9EA0A8;display:inline-flex;align-items:center;gap:7px;transition:color .2s ease;" style-hover="color:#1B1B1A;">{{ driftMoreLabel }}</button>
     </div>
 
     <figure onClick="{{ onPlateClick }}" style="margin:0 0 clamp(40px,5vw,64px);overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.94;">
@@ -522,23 +530,25 @@
 
     <!-- 01 Planning -->
     <div style="margin-bottom:clamp(48px,6vw,72px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Concept &amp; Planning</p>
-      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">A getaway for two</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Early notes of my intent: a Japandi-style retreat for elders or couples, where self-driving makes long-distance travel safe and independent. No dashboard, no "car features". Instead, a tea space for scenic, train-like rides. The small layout encourages connection with yourself and your companion.</p>
-      <figure style="margin:0;">
-        <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
-          <img src="assets/drift-sketch-1.png" alt="Planning notes — concept brief for the Drift van" style="display:block;width:100%;height:auto;">
-        </div>
-        <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">Initial brief: defining who it's for and the feeling to design toward.</figcaption>
-      </figure>
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Concept &amp; Planning</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">A getaway for two</h2>
+      <div style="display:flex;gap:clamp(22px,3.5vw,44px);align-items:flex-start;flex-wrap:wrap;">
+        <p style="margin:0;flex:1 1 320px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Early notes of my intent: a Japandi-style retreat for elders or couples, where self-driving makes long-distance travel safe and independent. No dashboard, no "car features". Instead, a tea space for scenic, train-like rides. The small layout encourages connection with yourself and your companion.</p>
+        <figure style="margin:0;flex:0 0 clamp(150px,20vw,220px);">
+          <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+            <img src="assets/drift-sketch-1.png" alt="Planning notes — concept brief for the Drift van" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:9px;font-size:11px;line-height:1.5;color:#9EA0A8;">Initial brief: defining who it's for and the feeling to design toward.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <!-- 02 Layout explorations (scrapped) -->
     <div style="margin-bottom:clamp(48px,6vw,72px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Layout Explorations</p>
-      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">Scrapped: too "car-like"</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The first layout I tried relied on car logic: rotatable seats, a slide-along TV, a deployable ramp. They worked, but kept the space feeling like a vehicle. I scrapped them to make proper use of the freed space —if the car drives itself, it shouldn't need "car features" at all. </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(16px,2.4vw,28px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Layout Explorations</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">Scrapped: too "car-like"</h2>
+      <div style="display:flex;gap:clamp(22px,3.5vw,44px);align-items:flex-start;flex-wrap:wrap;"><p style="margin:0;flex:1 1 320px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The first layout I tried relied on car logic: rotatable seats, a slide-along TV, a deployable ramp. They worked, but kept the space feeling like a vehicle. I scrapped them to make proper use of the freed space —if the car drives itself, it shouldn't need "car features" at all. </p>
+      <div style="flex:0 0 clamp(150px,20vw,220px);display:flex;flex-direction:column;gap:clamp(14px,2vw,20px);">
         <figure style="margin:0;">
           <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
             <img src="assets/drift-sketch-2.png" alt="Early layout — rotatable seats, sliding TV, ramp" style="display:block;width:100%;height:auto;">
@@ -552,25 +562,28 @@
           <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">Messier studies: pushing the lounge, seats and storage around.</figcaption>
         </figure>
       </div>
+      </div>
     </div>
 
     <!-- 03 Final concept -->
     <div style="margin-bottom:clamp(48px,6vw,72px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Final Concept</p>
-      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">A room, not a vehicle</h2>
-      <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The resolved plan reads like a small home: kitchen and bath at one end, a living/tea space in the middle, and a quiet bed nook separated at the far end. Large shoji-screen-like windows (inspired by Japanese bullet trains) wrap around the bed nook, making the landscape the view from bed. Shallow accessible stairs are deployed for the elderly, which can also be replaced with a ramp.</p>
-      <figure style="margin:0;">
-        <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
-          <img src="assets/drift-sketch-4.png" alt="Final concept sketch — floor plan, bed nook, shoji windows" style="display:block;width:100%;height:auto;">
-        </div>
-        <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">Final concept: bed nook with large windows, shoji screens, romantic curtains.</figcaption>
-      </figure>
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Final Concept</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">A room, not a vehicle</h2>
+      <div style="display:flex;gap:clamp(22px,3.5vw,44px);align-items:flex-start;flex-wrap:wrap;">
+        <p style="margin:0;flex:1 1 320px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">The resolved plan reads like a small home: kitchen and bath at one end, a living/tea space in the middle, and a quiet bed nook separated at the far end. Large shoji-screen-like windows (inspired by Japanese bullet trains) wrap around the bed nook, making the landscape the view from bed. Shallow accessible stairs are deployed for the elderly, which can also be replaced with a ramp.</p>
+        <figure style="margin:0;flex:0 0 clamp(150px,20vw,220px);">
+          <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+            <img src="assets/drift-sketch-4.png" alt="Final concept sketch — floor plan, bed nook, shoji windows" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:9px;font-size:11px;line-height:1.5;color:#9EA0A8;">Final concept: bed nook with large windows, shoji screens, romantic curtains.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <!-- 04 Modeling -->
     <div style="margin-bottom:clamp(8px,1vw,12px);">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B0B2B9;">Modeling in Rhino</p>
-      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:clamp(17px,1.6vw,21px);letter-spacing:0.02em;color:#3E4046;">Building it out</h2>
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Modeling in Rhino</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">Building it out</h2>
       <p style="margin:0 0 clamp(20px,2.6vw,28px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Modeling the interior in Rhino, in chronological order. After many iterations, I later moved the bed to the very end of the cabin. It was very important to me to find the best "relaxation nook," wrapped on three sides by glass, perfect for bird watching.</p>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,22px);">
         <figure style="margin:0;">
@@ -636,6 +649,184 @@
   </main>
   </sc-if>
 
+  <!-- ============================ IRIS (P3) ============================ -->
+  <sc-if value="{{ isIris }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width:880px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#565860;">
+    <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(28px,4vw,44px);" style-hover="color:#1B1B1A;">← Back</button>
+
+    <figure style="margin:0 0 clamp(30px,4vw,48px);overflow:hidden;background:#F1F1F2;aspect-ratio:16/8;animation:menuItemIn .9s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
+      <img src="assets/iris-banner.png" alt="Iris — rimless smart eyewear with visible electronics in the temples" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;">
+    </figure>
+
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.06s;">
+      <h1 style="margin:0;font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3E4046;">Iris</h1>
+      <span style="display:inline-flex;align-items:center;gap:7px;background:#EDEEF0;padding:6px 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#5A5C63;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:#8A8D96;display:inline-block;"></span>Work in Progress</span>
+    </div>
+    <p style="margin:14px 0 0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.13s;">Smart Eyewear · 2026</p>
+    <p style="margin:14px 0 0;max-width:54ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1.1vw,15px);line-height:1.8;color:#9EA0A8;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.16s;">A current project, still in progress. I'm prototyping the electronics and the frame — renders and build photos to come!</p>
+
+    <!-- QUICK FACTS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:clamp(16px,3vw,40px);margin:clamp(30px,3.6vw,42px) 0 0;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.18s;">
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Type</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Self-initiated</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Year</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">2026</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Tools</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Arduino · Rhino · Figma</p></div>
+      <div><p style="margin:0;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Role</p><p style="margin:8px 0 0;font-size:13px;letter-spacing:0.02em;color:#565860;">Solo</p></div>
+    </div>
+
+    <!-- PROBLEM -->
+    <p style="margin:clamp(30px,4vw,46px) 0 0;max-width:54ch;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(20px,2.3vw,29px);line-height:1.5;letter-spacing:-0.005em;color:#3E4046;text-wrap:pretty;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">How long can the eye stare at a screen before it strains? Iris is eyewear that gently reminds you to rest. No stressful numbers, just a calm cue.</p>
+
+    <div style="display:flex;flex-direction:column;gap:18px;margin:clamp(32px,4vw,48px) 0 clamp(40px,5vw,64px);max-width:62ch;animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.2s;">
+      <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:2.0;color:#565860;text-wrap:pretty;">Inspired by my love for Gentle Monster and cyberpunk aesthetics, Iris is a fashion line of smart eyewear that targets eye strain from digital devices. </p>
+    </div>
+
+    <!-- CONCEPT -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Concept</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">A fashion piece first</h2>
+      <p style="margin:0 0 16px;max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">To target consumers, the frames have are not only fashionable, but also a support to your health. </p>
+      <p style="margin:0;max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">It's calm tech: Iris lets you know when it's time to take a break through a soft, calming stimulus like a vibrational pulse at the temple.</p>
+    </div>
+
+    <!-- EARLY SKETCHES -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Early Sketches</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">First passes, then pared back</h2>
+      <div style="display:flex;gap:clamp(22px,3.5vw,44px);align-items:flex-start;flex-wrap:wrap;">
+        <p style="margin:0;flex:1 1 300px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Early prototype sketches: clear and silver frames with the electronics and internal hardware drawn in, plus diamond-stud accents and a notched, rounded temple in cross-section. I later moved away from this heavier build toward something more compact and minimal, for a better, more comfortable everyday wear.</p>
+        <div style="flex:0 0 clamp(160px,22vw,240px);display:flex;flex-direction:column;gap:clamp(14px,2vw,20px);">
+          <figure style="margin:0;">
+            <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+              <img src="assets/iris-sketch-1.png" alt="Early Iris sketch — clear frame, side perspective with electronics" style="display:block;width:100%;height:auto;">
+            </div>
+            <figcaption style="margin-top:9px;font-size:11px;line-height:1.5;color:#9EA0A8;">Perspective study: clear frame with temple electronics.</figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+              <img src="assets/iris-sketch-2.png" alt="Early Iris sketch — clear and silver variants, internal hardware detail" style="display:block;width:100%;height:auto;">
+            </div>
+            <figcaption style="margin-top:9px;font-size:11px;line-height:1.5;color:#9EA0A8;">Clear and silver variants with the hardware mapped out.</figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <div onClick="{{ onPlateClick }}" style="background:#FFFFFF;overflow:hidden;cursor:zoom-in;border:1px solid #ECECEC;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+              <img src="assets/iris-sketch-3.png" alt="Early Iris sketch — front and side views with diamond studs, notch, cross-section" style="display:block;width:100%;height:auto;">
+            </div>
+            <figcaption style="margin-top:9px;font-size:11px;line-height:1.5;color:#9EA0A8;">Front and side: diamond studs, notch, and rounded cross-section.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- MATERIAL RESEARCH -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Material Research</p>
+      <h2 style="margin:0 0 18px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">Clear, lasting, a little cyberpunk</h2>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;max-width:62ch;">
+        <li style="display:flex;gap:14px;align-items:baseline;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:#C2C4CA;transform:translateY(6px);"></span><span>A clear frame in a material that won't yellow over time — leaning toward a clear gray rather than fully clear.</span></li>
+        <li style="display:flex;gap:14px;align-items:baseline;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:#C2C4CA;transform:translateY(6px);"></span><span>Silver and metal detailing for the cyberpunk vibe.</span></li>
+        <li style="display:flex;gap:14px;align-items:baseline;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:#C2C4CA;transform:translateY(6px);"></span><span>Lost-wax casting for the metal parts.</span></li>
+        <li style="display:flex;gap:14px;align-items:baseline;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:#C2C4CA;transform:translateY(6px);"></span><span>Blue-light lenses to ease screen strain.</span></li>
+      </ul>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">How It Works</p>
+      <h2 style="margin:0 0 18px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">The 20-minute loop</h2>
+      <div style="display:flex;flex-direction:column;gap:0;max-width:62ch;">
+        <div style="display:flex;gap:18px;padding:0 0 22px;border-left:1px solid #E4E5E9;margin-left:7px;padding-left:26px;position:relative;"><span style="position:absolute;left:-4px;top:2px;width:9px;height:9px;border-radius:50%;background:#8A8D96;"></span><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><strong style="font-weight:600;color:#3E4046;">Switch on.</strong> A touch of the button starts a 20-minute timer as you settle in front of a screen, head mostly still.</p></div>
+        <div style="display:flex;gap:18px;padding:0 0 22px;border-left:1px solid #E4E5E9;margin-left:7px;padding-left:26px;position:relative;"><span style="position:absolute;left:-4px;top:2px;width:9px;height:9px;border-radius:50%;background:#8A8D96;"></span><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><strong style="font-weight:600;color:#3E4046;">The nudge.</strong> At 20 minutes, the glasses pulse — a soft cue that it's time to rest your eyes.</p></div>
+        <div style="display:flex;gap:18px;padding:0 0 22px;border-left:1px solid #E4E5E9;margin-left:7px;padding-left:26px;position:relative;"><span style="position:absolute;left:-4px;top:2px;width:9px;height:9px;border-radius:50%;background:#8A8D96;"></span><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><strong style="font-weight:600;color:#3E4046;">30-second cool-down.</strong> One pulse to begin, two to finish. The motion sensor checks that your head is moving and encourages a few extra blinks.</p></div>
+        <div style="display:flex;gap:18px;padding:0;margin-left:7px;padding-left:26px;position:relative;"><span style="position:absolute;left:-4px;top:2px;width:9px;height:9px;border-radius:50%;background:#C2C4CA;"></span><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.7;color:#565860;text-wrap:pretty;"><strong style="font-weight:600;color:#3E4046;">Reset.</strong> The glasses return to their normal state, and the whole cycle loops.</p></div>
+      </div>
+    </div>
+
+    <!-- THE APP -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">The App</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">A progress bar, not a number</h2>
+      <p style="margin:0 0 16px;max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">A 6-axis IMU (gyroscope + accelerometer) inside the frames reads the head's movement and sends it to the phone over Bluetooth Low Energy. The app doesn't care where you're looking, only that the coordinates are changing.</p>
+      <p style="margin:0;max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">When you're still and staring, a progress bar fills. When you look around, it pauses and drains. At full, the app tints the lenses for a 30-second refresh, then clears them and resets — no stressful numbers, just a calm bar.</p>
+    </div>
+
+    <!-- MODELING (PROTOTYPE 1) -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Modeling Prototype 01</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">The first build</h2>
+      <p style="margin:0 0 clamp(22px,3vw,30px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">My first Rhino build: a rimless oval frame with slim metal temples and a clear hardware housing. It looked refined, but the temples carried a lot of weight and hardware. I wanted the product to feel more compact, and a bit more stylized. </p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,22px);">
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#AEB4B9;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+            <img src="assets/iris-proto1-wire2.png" alt="Rhino perspective wireframe — prototype 1 frame, lenses, and temples" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Perspective build: frame, lenses, and temples in Rhino.</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#AEB4B9;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+            <img src="assets/iris-proto1-wire.png" alt="Rhino front wireframe — prototype 1 frame and hinge" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Front construction: rim curves and hinge blocks.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- MODELING (PROTOTYPE 2) -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Modeling Prototype 02</p>
+      <h2 style="margin:0 0 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">Building it in Rhino</h2>
+      <p style="margin:0 0 clamp(22px,3vw,30px);max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,17px);line-height:1.8;color:#565860;text-wrap:pretty;">Modeling the second prototype in Rhino: working out how the temple hardware, hinge, and the lens module pack into a slimmer frame. Red points mark diamond inlays for a luxury touch. </p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,22px);">
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#AEB4B9;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+            <img src="assets/iris-rhino-1.png" alt="Rhino model — front view of the temple armature and hinge" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Front view: the temple armature, hinge, and lens module.</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <div onClick="{{ onPlateClick }}" style="background:#AEB4B9;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.92;">
+            <img src="assets/iris-rhino-2.png" alt="Rhino model — side view with sensor placement marked" style="display:block;width:100%;height:auto;">
+          </div>
+          <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Side view: sensor placement against the lens curve.</figcaption>
+        </figure>
+      </div>
+      <figure style="margin:clamp(16px,2.4vw,22px) 0 0;max-width:240px;">
+        <div onClick="{{ onPlateClick }}" style="background:#3A3C3E;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.9;">
+          <img src="assets/iris-rhino-3.png" alt="Rhino clay detail — hinge and module wiring" style="display:block;width:100%;height:auto;">
+        </div>
+        <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Clay detail: how the hinge and module route together.</figcaption>
+      </figure>
+      <figure style="margin:clamp(16px,2.4vw,22px) 0 0;">
+        <div onClick="{{ onPlateClick }}" style="background:#F6F7F8;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.94;">
+          <img src="assets/iris-proto2-detail.png" alt="Temple close-up render — clear housing over the internal hardware" style="display:block;width:100%;height:auto;">
+        </div>
+        <figcaption style="margin-top:10px;font-size:12px;color:#9EA0A8;">Temple render: the clear housing reveals the hardware tucked inside.</figcaption>
+      </figure>
+    </div>
+
+    <!-- PROTOTYPE RENDERS -->
+    <div style="margin-bottom:clamp(48px,6vw,72px);">
+      <p style="margin:0 0 clamp(20px,2.6vw,28px);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:#9EA0A8;">Prototype Renders</p>
+      <figure style="margin:0;">
+        <div onClick="{{ onPlateClick }}" style="background:#F1F1F2;overflow:hidden;cursor:zoom-in;transition:opacity .25s ease;" style-hover="opacity:0.94;">
+          <img src="assets/iris-render-1.png" alt="Iris prototype render — rimless frame with electronics visible through the clear temples" style="display:block;width:100%;height:auto;">
+        </div>
+        <figcaption style="margin-top:11px;font-size:12px;color:#9EA0A8;">Prototype render #1: rimless frame with the electronics left visible through the clear temples.</figcaption>
+      </figure>
+    </div>
+
+    <!-- BUILD ROADMAP -->
+    <div style="margin-bottom:clamp(8px,1vw,12px);">
+      <p style="margin:0 0 clamp(20px,2.4vw,26px);font-size:16px;letter-spacing:0.14em;text-transform:uppercase;color:#B0B2B9;">Build Roadmap</p>
+      <h2 style="margin:0 0 22px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.02em;color:#3E4046;">Where it's headed</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.6vw,32px);max-width:62ch;">
+        <div><p style="margin:0 0 8px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">Forensics</p><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,16px);line-height:1.7;color:#565860;text-wrap:pretty;">Building a cardboard and plastic model of the glasses.</p></div>
+        <div><p style="margin:0 0 8px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">The Bridge</p><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,16px);line-height:1.7;color:#565860;text-wrap:pretty;">Build the concept of a simple app with a progress bar driven by a test data stream. Figma, then Flutter/Swift.</p></div>
+        <div><p style="margin:0 0 8px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#B0B2B9;">The Showcase</p><p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.2vw,16px);line-height:1.7;color:#565860;text-wrap:pretty;">Render more views at different angles, then stage a photoshoot of the glasses on a model, composited in Photoshop.</p></div>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
   <sc-if value="{{ isOtherProject }}" hint-placeholder-val="{{ false }}">
   <main style="max-width:880px;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,72px) clamp(72px,9vw,120px);color:#6E6A63;">
     <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9A9892;padding:0;margin-bottom:clamp(36px,5vw,60px);" style-hover="color:#1B1B1A;">← Back</button>
@@ -659,7 +850,7 @@
           </sc-if>
           <sc-if value="{{ g.isPh }}" hint-placeholder-val="{{ true }}">
             <div style="aspect-ratio:16/10;border:1px solid transparent;background:#EEE8DB;display:flex;align-items:center;justify-content:center;">
-              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:#ADA9A2;">[ {{ g.label }} ]</span>
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:#ADA9A2;">[ {{ g.label }} ]</span>
             </div>
           </sc-if>
           <figcaption style="margin-top:11px;font-size:12px;color:#9A9892;">{{ g.caption }}</figcaption>
@@ -796,7 +987,7 @@
     <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
       <button onClick="{{ navArt }}" style="display:block;background:none;border:none;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;padding:0;margin:0 0 clamp(28px,3.5vw,40px);" style-hover="color:#1B1B1A;">← Artwork</button>
       <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Sketches · Studies</p>
-      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
+      <h1 style="margin:0;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Figure Sketches</h1>
       <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Charcoal, Neocolor, and acrylic studies.</p>
       <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
     </div>
@@ -809,7 +1000,7 @@
           </sc-if>
           <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
             <div style="{{ a.frameStyle }}">
-              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
             </div>
           </sc-if>
           <div style="margin-top:clamp(16px,1.6vw,22px);">
@@ -834,7 +1025,7 @@
     <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
       <button onClick="{{ navArt }}" style="display:block;background:none;border:none;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9A9892;padding:0;margin:0 0 clamp(28px,3.5vw,40px);" style-hover="color:#1B1B1A;">← Artwork</button>
       <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">3D Sculptures</p>
-      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
+      <h1 style="margin:0;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">Form in three dimensions.</h1>
       <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:#7C7872;max-width:60ch;">Sculptural studies in wood, where structure, balance, and material meet. The same instincts that drive my product work, made physical.</p>
       <p style="margin:clamp(26px,3vw,34px) 0 0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
     </div>
@@ -874,7 +1065,7 @@
     <div style="max-width:780px;margin:0 0 clamp(56px,8vw,104px);animation:menuItemIn .8s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:.04s;">
       <button onClick="{{ navWorks }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9EA0A8;padding:0;margin-bottom:clamp(28px,4vw,44px);" style-hover="color:#1B1B1A;">← Back to Projects</button>
       <p style="margin:0 0 clamp(22px,3vw,32px);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:600;color:#9A9892;">Fine Art · Foundation</p>
-      <h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
+      <h1 style="margin:0;font-family:'Times New Roman',Times,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.2;letter-spacing:-0.005em;color:#3E3B36;">An award-winning foundation in fine art.</h1>
       <p style="margin:clamp(24px,3vw,36px) 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(13px,1.05vw,15px);line-height:1.8;color:#7C7872;max-width:60ch;">Before I pursued industrial design I spent many years of studio practice in painting and drawing. These efforts are recognized through my fine arts portfolio, which has shaped the way I see form, light, and material. The pieces below act as the foundation for my design eye.</p>
       <div style="margin:clamp(26px,3vw,34px) 0 0;display:flex;flex-direction:column;gap:11px;">
         <p style="margin:0;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#6E6A63;"><span style="width:7px;height:7px;border-radius:50%;background:#B0B2B9;flex:0 0 auto;"></span>Pratt FoundationFolio Winner · 2026</p>
@@ -893,7 +1084,7 @@
           </sc-if>
           <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}">
             <div style="{{ a.frameStyle }}">
-              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.06em;color:#B5B0A6;">[ {{ a.ph }} ]</span>
             </div>
           </sc-if>
           <div style="margin-top:clamp(16px,1.6vw,22px);">
@@ -1272,9 +1463,10 @@ class Component extends DCLogic {
 
     const workCat = this.state.workCat || 'all';
     const worksData = [
+      { key: 'iris', title: 'Iris', sub: 'Smart Eyewear', year: '2026', img: 'assets/iris-thumb.png', alt: 'IRIS — Smart Eyewear (work in progress)', cat: 'health', wip: true, onOpen: open('p3') },
       { key: 'drift', title: 'Drift', sub: 'Self-Driving Retreat', year: '2026', img: 'assets/drift-thumb.png', alt: 'DRIFT — Self-Driving RV Concept', cat: 'car', onOpen: open('p2') },
       { key: 'andon', title: 'Andon', sub: 'Elderly Wellness', year: '2026', img: 'assets/andon-thumb.png', alt: 'Andon — Elderly Wellness Lamp', cat: 'health', onOpen: open('p1') },
-    ].map(w => ({ ...w, imgNode: React.createElement('img', { src: w.img, alt: w.alt, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' } }) }));
+    ].map(w => ({ ...w, wip: !!w.wip, imgNode: React.createElement('img', { src: w.img, alt: w.alt, style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' } }) }));
     const worksList = worksData.filter(w => workCat === 'all' || w.cat === workCat);
     const catActiveStyle = 'background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:13px;letter-spacing:0.02em;color:#63656C;font-weight:600;transition:color .2s ease;';
     const catIdleStyle = 'background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:0;font-size:13px;letter-spacing:0.02em;color:#A7A9B0;font-weight:400;transition:color .2s ease;';
@@ -1301,7 +1493,8 @@ class Component extends DCLogic {
       worksList, workCats,
       isAndon: route === 'project' && this.state.project === 'p1',
       isDrift: route === 'project' && this.state.project === 'p2',
-      isOtherProject: route === 'project' && this.state.project !== 'p1' && this.state.project !== 'p2',
+      isIris: route === 'project' && this.state.project === 'p3',
+      isOtherProject: route === 'project' && this.state.project !== 'p1' && this.state.project !== 'p2' && this.state.project !== 'p3',
       onPlateClick: (e) => { const img = e.currentTarget.querySelector('img'); if (img) this.openLightbox(img.getAttribute('src')); },
       isResume: route === 'resume', isContact: route === 'contact', isArt: route === 'art', isSketch: route === 'sketch', notContact: route !== 'contact',
       navWork: () => this.go('work'), navWorks: () => { this.setState({ worksView: 'projects' }); this.go('works'); }, navAbout: () => this.go('about'),
@@ -1311,6 +1504,7 @@ class Component extends DCLogic {
       vwProjects: (this.state.worksView || 'projects') === 'projects', vwArt: this.state.worksView === 'art', vwSketch: this.state.worksView === 'sketch', vwSculpt: this.state.worksView === 'sculpt',
       navAndon: open('p1'),
       navDrift: open('p2'),
+      navIris: open('p3'),
       heroEnter: (e) => { const v = e.currentTarget.querySelector('video'); if (v) { try { v.muted = true; v.loop = true; v.currentTime = 0; v.style.opacity = '1'; const r = v.play(); if (r && r.catch) r.catch(() => {}); } catch (err) {} } },
       heroLeave: (e) => { const v = e.currentTarget.querySelector('video'); if (v) { try { v.pause(); v.style.opacity = '0'; } catch (err) {} } },
       navResume: () => this.go('resume'), navContact: () => this.go('contact'),
